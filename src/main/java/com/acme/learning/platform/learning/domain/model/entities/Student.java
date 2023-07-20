@@ -40,6 +40,15 @@ public class Student extends AuditableModel {
         this.performanceMetrics = this.performanceMetrics.incrementTotalTutorials();
     }
 
+    public String getStudentRecordId() {
+        return this.acmeStudentId.id();
+    }
+
+    public Long getProfileId() {
+        return this.profileId.id();
+    }
+
+
 
 
 }
