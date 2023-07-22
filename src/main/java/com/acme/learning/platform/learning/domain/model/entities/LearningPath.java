@@ -9,7 +9,7 @@ import java.util.List;
 @Embeddable
 public class LearningPath {
 
-    @OneToMany
+    @OneToMany(mappedBy = "course")
     private List<LearningPathItem> learningPathItems;
 
     public LearningPath() {

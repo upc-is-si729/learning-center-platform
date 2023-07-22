@@ -10,6 +10,9 @@ public class LearningPathItem {
     @Id
     private Long id;
 
+    @ManyToOne
+    private Course course;
+
     @ManyToOne(optional = false)
     private Tutorial tutorial;
 
