@@ -11,9 +11,9 @@ public class ProgressRecord {
     @OneToMany
     private List<ProgressRecordItem> progressRecordItems;
 
-    public void initializeProgressRecord(LearningPath learningPath) {
+    public void initializeProgressRecord(Long enrollmentId, LearningPath learningPath) {
         Long  tutorialId = learningPath.getFirstTutorialIdInLearningPath();
-        ProgressRecordItem progressRecordItem = new ProgressRecordItem(tutorialId);
+        ProgressRecordItem progressRecordItem = new ProgressRecordItem(enrollmentId, tutorialId);
         progressRecordItems.add(progressRecordItem);
     }
 
@@ -32,7 +32,7 @@ public class ProgressRecord {
 
         Tutorial nextTutorial = learningPath.getNextTutorialInLearningPath(tutorialId);
         if (nextTutorial != null) {
-            ProgressRecordItem nextProgressRecordItem = new ProgressRecordItem(nextTutorial.getId());
+            ProgressRecordItem nextProgressRecordItem = new ProgressRecordItem(progressRecordItem.getEnrollmentId(), nextTutorial.getId());
             progressRecordItems.add(nextProgressRecordItem);
         }
     }

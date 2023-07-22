@@ -38,9 +38,6 @@ public class Profile extends AbstractAggregateRoot<Profile> {
     }
 
     public Profile() {
-        this.name = new PersonName();
-        this.email = new EmailAddress();
-        this.address = new StreetAddress();
     }
 
     public void updateName(String firstName, String lastName) {

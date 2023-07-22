@@ -11,6 +11,8 @@ public class Enrollment extends AbstractAggregateRoot<Enrollment> {
     @Id
     private Long id;
 
+
+    @Embedded
     private AcmeStudentRecordId acmeStudentRecordId;
 
     @ManyToOne
@@ -38,7 +40,7 @@ public class Enrollment extends AbstractAggregateRoot<Enrollment> {
 
     public void confirm() {
         this.status = EnrollmentStatus.CONFIRMED;
-        this.progressRecord.initializeProgressRecord(course.getLearningPath());
+        this.progressRecord.initializeProgressRecord(id, course.getLearningPath());
         // this.registerEvent(new EnrollmentConfirmedEvent(this));
     }
 

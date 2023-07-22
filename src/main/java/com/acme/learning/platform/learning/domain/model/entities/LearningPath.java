@@ -1,12 +1,15 @@
 package com.acme.learning.platform.learning.domain.model.entities;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Embeddable
 public class LearningPath {
+
+    @OneToMany
     private List<LearningPathItem> learningPathItems;
 
     public LearningPath() {

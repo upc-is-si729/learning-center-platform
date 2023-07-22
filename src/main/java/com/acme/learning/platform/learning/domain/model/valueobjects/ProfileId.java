@@ -3,11 +3,11 @@ package com.acme.learning.platform.learning.domain.model.valueobjects;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public record ProfileId(Long id) {
+public record ProfileId(Long profileId) {
 
     public ProfileId {
-        if (id < 0) {
-            throw new IllegalArgumentException("Profile id cannot be negative");
+        if (profileId < 0) {
+            throw new IllegalArgumentException("Profile profileId cannot be negative");
         }
     }
 

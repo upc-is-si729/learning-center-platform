@@ -20,7 +20,8 @@ public class ProgressRecordItem {
 
     private Date completedAt;
 
-    public ProgressRecordItem(Long tutorialId) {
+    public ProgressRecordItem(Long enrollmentId, Long tutorialId) {
+        this.enrollmentId = enrollmentId;
         this.tutorialId = tutorialId;
         this.status = ProgressStatus.NOT_STARTED;
     }
@@ -41,5 +42,9 @@ public class ProgressRecordItem {
 
     public Long getTutorialId() {
         return tutorialId;
+    }
+
+    public Long getEnrollmentId() {
+        return enrollmentId;
     }
 }

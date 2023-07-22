@@ -41,11 +41,11 @@ public class Student extends AuditableModel {
     }
 
     public String getStudentRecordId() {
-        return this.acmeStudentId.id();
+        return this.acmeStudentId.studentRecordId();
     }
 
     public Long getProfileId() {
-        return this.profileId.id();
+        return this.profileId.profileId();
     }
 
 
