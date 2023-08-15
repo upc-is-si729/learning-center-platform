@@ -1,10 +1,8 @@
 package com.acme.learning.platform.shared.infrastructure.persistence.jpa.strategy;
 
-import org.apache.logging.log4j.util.Strings;
 import org.hibernate.boot.model.naming.Identifier;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategy;
 import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
-import io.github.encryptorcode.pluralize.Pluralize;
 
 import static io.github.encryptorcode.pluralize.Pluralize.pluralize;
 
