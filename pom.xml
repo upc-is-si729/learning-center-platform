@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.acme.learning</groupId>
-    <artifactId>platform</artifactId>
+    <artifactId>learning-center-platform</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>learning-center-platform</name>
     <description>learning-center-platform</description>
