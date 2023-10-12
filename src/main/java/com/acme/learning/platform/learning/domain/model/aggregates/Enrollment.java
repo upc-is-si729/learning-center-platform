@@ -4,6 +4,7 @@ import com.acme.learning.platform.learning.domain.model.entities.Course;
 import com.acme.learning.platform.learning.domain.model.entities.ProgressRecord;
 import com.acme.learning.platform.learning.domain.model.valueobjects.AcmeStudentRecordId;
 import jakarta.persistence.*;
+import lombok.Getter;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
 @Entity
@@ -15,6 +16,7 @@ public class Enrollment extends AbstractAggregateRoot<Enrollment> {
     @Embedded
     private AcmeStudentRecordId acmeStudentRecordId;
 
+    @Getter
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
@@ -26,10 +28,6 @@ public class Enrollment extends AbstractAggregateRoot<Enrollment> {
 
     public Enrollment() {
 
-    }
-
-    public Course getCourse() {
-        return course;
     }
 
     public Enrollment(AcmeStudentRecordId studentRecordId, Course course) {

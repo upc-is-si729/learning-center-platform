@@ -4,18 +4,22 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
 
 @Entity
 public class LearningPathItem {
+    @Getter
     @Id
     private Long id;
 
     @ManyToOne
     private Course course;
 
+    @Getter
     @ManyToOne(optional = false)
     private Tutorial tutorial;
 
+    @Getter
     private Long nextItemId;
 
     public LearningPathItem(Tutorial tutorial, Long nextItemId) {
@@ -30,18 +34,6 @@ public class LearningPathItem {
 
     public void updateNextItemId(Long nextItemId) {
         this.nextItemId = nextItemId;
-    }
-
-    public Long getNextItemId() {
-        return nextItemId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Tutorial getTutorial() {
-        return tutorial;
     }
 
 }

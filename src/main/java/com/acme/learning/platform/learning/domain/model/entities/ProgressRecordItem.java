@@ -2,6 +2,7 @@ package com.acme.learning.platform.learning.domain.model.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.Getter;
 
 import java.util.Date;
 
@@ -10,8 +11,10 @@ public class ProgressRecordItem {
     @Id
     private Long id;
 
+    @Getter
     private Long enrollmentId;
 
+    @Getter
     private Long tutorialId;
 
     private ProgressStatus status;
@@ -40,11 +43,4 @@ public class ProgressRecordItem {
         this.completedAt = new Date();
     }
 
-    public Long getTutorialId() {
-        return tutorialId;
-    }
-
-    public Long getEnrollmentId() {
-        return enrollmentId;
-    }
 }
