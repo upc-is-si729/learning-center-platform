@@ -34,8 +34,7 @@ public class LearningPath {
     }
 
     public Tutorial getNextTutorialInLearningPath(Long currentTutorialId) {
-        Long itemId = learningPathItems.stream().filter(learningPathItem -> learningPathItem.getTutorial().getId().equals(currentTutorialId))
-                .findFirst().map(LearningPathItem::getNextItemId).orElse(null);
+        Long itemId = getLearningPathItemWithTutorialId(currentTutorialId).getNextItemId();
         return itemId != null ? getLearningPathItemWithId(itemId).getTutorial() : null;
     }
 

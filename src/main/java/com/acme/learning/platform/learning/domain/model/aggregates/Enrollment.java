@@ -10,6 +10,7 @@ import org.springframework.data.domain.AbstractAggregateRoot;
 @Entity
 public class Enrollment extends AbstractAggregateRoot<Enrollment> {
     @Id
+    @Getter
     private Long id;
 
 
@@ -27,7 +28,6 @@ public class Enrollment extends AbstractAggregateRoot<Enrollment> {
     private EnrollmentStatus status;
 
     public Enrollment() {
-
     }
 
     public Enrollment(AcmeStudentRecordId studentRecordId, Course course) {
