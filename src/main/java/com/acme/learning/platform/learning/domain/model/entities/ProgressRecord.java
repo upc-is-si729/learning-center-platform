@@ -10,7 +10,7 @@ import java.util.List;
 @Embeddable
 public class ProgressRecord {
 
-    @OneToMany
+    @OneToMany(mappedBy = "enrollment")
     private List<ProgressRecordItem> progressRecordItems;
 
     public ProgressRecord() {
