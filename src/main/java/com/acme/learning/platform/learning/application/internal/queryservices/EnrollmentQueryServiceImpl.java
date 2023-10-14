@@ -18,6 +18,6 @@ public class EnrollmentQueryServiceImpl implements EnrollmentQueryService {
 
     @Override
     public List<Enrollment> handle(GetStudentEnrollmentsQuery query) {
-        return enrollmentRepository.findAllByStudentRecordId(query.studentRecordId());
+        return enrollmentRepository.findAllByAcmeStudentRecordId(query.studentRecordId());
     }
 }

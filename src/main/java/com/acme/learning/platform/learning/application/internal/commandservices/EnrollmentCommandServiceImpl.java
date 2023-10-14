@@ -31,5 +31,5 @@ public class EnrollmentCommandServiceImpl implements EnrollmentCommandService {
             return enrollment.getId();
         }).orElseThrow(() -> new RuntimeException("Student not found"));
         return 0L;
-    };
+    }
 }
