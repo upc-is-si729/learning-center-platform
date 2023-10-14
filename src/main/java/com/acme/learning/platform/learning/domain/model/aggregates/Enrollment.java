@@ -11,9 +11,11 @@ import org.springframework.data.domain.AbstractAggregateRoot;
 public class Enrollment extends AbstractAggregateRoot<Enrollment> {
     @Id
     @Getter
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 
+    @Getter
     @Embedded
     private AcmeStudentRecordId acmeStudentRecordId;
 
@@ -34,6 +36,7 @@ public class Enrollment extends AbstractAggregateRoot<Enrollment> {
         this.acmeStudentRecordId = studentRecordId;
         this.course = course;
         this.status = EnrollmentStatus.REQUESTED;
+        this.progressRecord = new ProgressRecord();
     }
 
     public void confirm() {
@@ -52,5 +55,15 @@ public class Enrollment extends AbstractAggregateRoot<Enrollment> {
         // this.registerEvent(new EnrollmentCancelledEvent(this));
     }
 
+    public long calculateDaysElapsed() {
+        return progressRecord.calculateDaysElapsedForEnrollment(this.id);
+    }
 
+    public boolean isConfirmed() {
+        return this.status == EnrollmentStatus.CONFIRMED;
+    }
+
+    public boolean isRejected() {
+        return this.status == EnrollmentStatus.REJECTED;
+    }
 }

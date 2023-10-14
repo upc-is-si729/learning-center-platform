@@ -1,17 +1,16 @@
 package com.acme.learning.platform.learning.domain.model.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 @Entity
 public class LearningPathItem {
     @Getter
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     @ManyToOne
     private Course course;
 
@@ -22,7 +21,8 @@ public class LearningPathItem {
     @Getter
     private Long nextItemId;
 
-    public LearningPathItem(Tutorial tutorial, Long nextItemId) {
+    public LearningPathItem(Course course, Tutorial tutorial, Long nextItemId) {
+        this.course = course;
         this.tutorial = tutorial;
         this.nextItemId = nextItemId;
     }

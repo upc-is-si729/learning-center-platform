@@ -17,15 +17,15 @@ public class LearningPath {
     }
 
 
-    public void addItem(Tutorial tutorial, Long nextItemId) {
-        LearningPathItem learningPathItem = new LearningPathItem(tutorial, nextItemId);
+    public void addItem(Course course, Tutorial tutorial, Long nextItemId) {
+        LearningPathItem learningPathItem = new LearningPathItem(course, tutorial, nextItemId);
         learningPathItems.add(learningPathItem);
     }
 
-    public void addItem(Tutorial tutorial) {
+    public void addItem(Course course, Tutorial tutorial) {
         int size = learningPathItems.size();
         Long currentLastItemId = size > 0 ? learningPathItems.get(size - 1).getId() : null;
-        LearningPathItem learningPathItem = new LearningPathItem(tutorial, currentLastItemId);
+        LearningPathItem learningPathItem = new LearningPathItem(course, tutorial, currentLastItemId);
         learningPathItems.add(learningPathItem);
     }
 
