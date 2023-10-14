@@ -12,6 +12,7 @@ public class LearningPathItem {
 
     @Getter
     @ManyToOne
+    @JoinColumn(name = "course_id")
     private Course course;
 
     @Getter

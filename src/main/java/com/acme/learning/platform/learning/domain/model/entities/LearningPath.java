@@ -33,6 +33,10 @@ public class LearningPath {
         return learningPathItems.get(0).getTutorial().getId();
     }
 
+    public Tutorial getFirstTutorialInLearningPath() {
+        return learningPathItems.get(0).getTutorial();
+    }
+
     public Tutorial getNextTutorialInLearningPath(Long currentTutorialId) {
         Long itemId = getLearningPathItemWithTutorialId(currentTutorialId).getNextItemId();
         return itemId != null ? getLearningPathItemWithId(itemId).getTutorial() : null;

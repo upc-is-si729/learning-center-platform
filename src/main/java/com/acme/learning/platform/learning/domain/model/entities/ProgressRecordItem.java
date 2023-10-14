@@ -1,7 +1,10 @@
 package com.acme.learning.platform.learning.domain.model.entities;
 
+import com.acme.learning.platform.learning.domain.model.aggregates.Enrollment;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 
 import java.time.LocalDate;
@@ -13,10 +16,14 @@ public class ProgressRecordItem {
     private Long id;
 
     @Getter
-    private Long enrollmentId;
+    @ManyToOne
+    @JoinColumn(name = "enrollment_id")
+    private Enrollment enrollment;
 
     @Getter
-    private Long tutorialId;
+    @ManyToOne
+    @JoinColumn(name = "tutorial_id")
+    private Tutorial tutorial;
 
     private ProgressStatus status;
 
@@ -24,9 +31,9 @@ public class ProgressRecordItem {
 
     private Date completedAt;
 
-    public ProgressRecordItem(Long enrollmentId, Long tutorialId) {
-        this.enrollmentId = enrollmentId;
-        this.tutorialId = tutorialId;
+    public ProgressRecordItem(Enrollment enrollment, Tutorial tutorial) {
+        this.enrollment = enrollment;
+        this.tutorial = tutorial;
         this.status = ProgressStatus.NOT_STARTED;
     }
 
@@ -50,6 +57,10 @@ public class ProgressRecordItem {
 
     public boolean isInProgress() {
         return this.status == ProgressStatus.STARTED;
+    }
+
+    public boolean isNotStarted() {
+        return this.status == ProgressStatus.NOT_STARTED;
     }
 
     /**

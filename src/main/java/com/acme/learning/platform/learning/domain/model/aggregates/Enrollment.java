@@ -41,7 +41,7 @@ public class Enrollment extends AbstractAggregateRoot<Enrollment> {
 
     public void confirm() {
         this.status = EnrollmentStatus.CONFIRMED;
-        this.progressRecord.initializeProgressRecord(id, course.getLearningPath());
+        this.progressRecord.initializeProgressRecord(this, course.getLearningPath());
         // this.registerEvent(new EnrollmentConfirmedEvent(this));
     }
 
@@ -56,7 +56,7 @@ public class Enrollment extends AbstractAggregateRoot<Enrollment> {
     }
 
     public long calculateDaysElapsed() {
-        return progressRecord.calculateDaysElapsedForEnrollment(this.id);
+        return progressRecord.calculateDaysElapsedForEnrollment(this);
     }
 
     public boolean isConfirmed() {
