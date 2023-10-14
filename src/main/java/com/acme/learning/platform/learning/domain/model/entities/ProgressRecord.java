@@ -10,7 +10,7 @@ import java.util.List;
 @Embeddable
 public class ProgressRecord {
 
-    @OneToMany
+    @OneToMany(mappedBy = "enrollment")
     private List<ProgressRecordItem> progressRecordItems;
 
     public ProgressRecord() {
@@ -22,7 +22,6 @@ public class ProgressRecord {
         ProgressRecordItem progressRecordItem = new ProgressRecordItem(enrollment, tutorial);
         progressRecordItems.add(progressRecordItem);
     }
-
 
     public void startTutorial(Long tutorialId) {
 
