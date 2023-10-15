@@ -1,6 +1,7 @@
 package com.acme.learning.platform.learning.domain.model.entities;
 
 import com.acme.learning.platform.learning.domain.model.aggregates.Enrollment;
+import com.acme.learning.platform.learning.domain.model.valueobjects.ProgressStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;

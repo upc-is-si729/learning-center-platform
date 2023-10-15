@@ -1,6 +1,6 @@
 package com.acme.learning.platform.learning.domain.model.valueobjects;
 
-import com.acme.learning.platform.learning.domain.model.entities.Course;
+import com.acme.learning.platform.learning.domain.model.aggregates.Course;
 import com.acme.learning.platform.learning.domain.model.entities.LearningPathItem;
 import com.acme.learning.platform.learning.domain.model.entities.Tutorial;
 import jakarta.persistence.Embeddable;

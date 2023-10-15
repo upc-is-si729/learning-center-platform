@@ -1,6 +1,6 @@
 package com.acme.learning.platform.learning.domain.model.aggregates;
 
-import com.acme.learning.platform.learning.domain.model.entities.Course;
+import com.acme.learning.platform.learning.domain.model.valueobjects.EnrollmentStatus;
 import com.acme.learning.platform.learning.domain.model.valueobjects.ProgressRecord;
 import com.acme.learning.platform.learning.domain.model.valueobjects.AcmeStudentRecordId;
 import jakarta.persistence.*;

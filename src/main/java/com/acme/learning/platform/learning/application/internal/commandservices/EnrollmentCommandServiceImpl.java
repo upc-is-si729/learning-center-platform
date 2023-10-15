@@ -3,7 +3,7 @@ package com.acme.learning.platform.learning.application.internal.commandservices
 import com.acme.learning.platform.learning.domain.exceptions.CourseNotFoundException;
 import com.acme.learning.platform.learning.domain.model.aggregates.Enrollment;
 import com.acme.learning.platform.learning.domain.model.commands.EnrollStudentInCourseCommand;
-import com.acme.learning.platform.learning.domain.model.entities.Course;
+import com.acme.learning.platform.learning.domain.model.aggregates.Course;
 import com.acme.learning.platform.learning.domain.services.EnrollmentCommandService;
 import com.acme.learning.platform.learning.infrastructure.repositories.CourseRepository;
 import com.acme.learning.platform.learning.infrastructure.repositories.EnrollmentRepository;
