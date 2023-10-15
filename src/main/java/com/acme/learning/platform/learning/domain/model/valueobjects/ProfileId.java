@@ -2,6 +2,9 @@ package com.acme.learning.platform.learning.domain.model.valueobjects;
 
 import jakarta.persistence.Embeddable;
 
+/**
+ * Value object representing the profile id.
+ */
 @Embeddable
 public record ProfileId(Long profileId) {
 

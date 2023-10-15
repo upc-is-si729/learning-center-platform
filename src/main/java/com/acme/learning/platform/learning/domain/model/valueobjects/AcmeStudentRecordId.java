@@ -4,6 +4,9 @@ import jakarta.persistence.Embeddable;
 
 import java.util.UUID;
 
+/**
+ * Value object representing the Acme student record id.
+ */
 @Embeddable
 public record AcmeStudentRecordId(String studentRecordId) {
     public AcmeStudentRecordId() {

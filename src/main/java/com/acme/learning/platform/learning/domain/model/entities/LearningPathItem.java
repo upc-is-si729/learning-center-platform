@@ -3,6 +3,9 @@ package com.acme.learning.platform.learning.domain.model.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+/**
+ * Represents an item in the learning path.
+ */
 @Entity
 public class LearningPathItem {
     @Getter
@@ -20,21 +23,23 @@ public class LearningPathItem {
     private Tutorial tutorial;
 
     @Getter
-    private Long nextItemId;
+    @ManyToOne
+    @JoinColumn(name = "next_item_id")
+    private LearningPathItem nextItem;
 
-    public LearningPathItem(Course course, Tutorial tutorial, Long nextItemId) {
+    public LearningPathItem(Course course, Tutorial tutorial, LearningPathItem nextItem) {
         this.course = course;
         this.tutorial = tutorial;
-        this.nextItemId = nextItemId;
+        this.nextItem = nextItem;
     }
 
     public LearningPathItem() {
         this.tutorial = null;
-        this.nextItemId = null;
+        this.nextItem = null;
     }
 
-    public void updateNextItemId(Long nextItemId) {
-        this.nextItemId = nextItemId;
+    public void updateNextItem(LearningPathItem nextItem) {
+        this.nextItem = nextItem;
     }
 
 }

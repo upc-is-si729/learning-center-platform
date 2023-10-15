@@ -1,12 +1,22 @@
-package com.acme.learning.platform.learning.domain.model.entities;
+package com.acme.learning.platform.learning.domain.model.valueobjects;
 
 import com.acme.learning.platform.learning.domain.model.aggregates.Enrollment;
+import com.acme.learning.platform.learning.domain.model.entities.ProgressRecordItem;
+import com.acme.learning.platform.learning.domain.model.entities.Tutorial;
+import com.acme.learning.platform.learning.domain.model.valueobjects.LearningPath;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ProgressRecord is an entity that is embedded in Enrollment aggregate.
+ * It is a value object that is not persisted in the database.
+ * It is used to track the progress of a student in a learning path.
+ * It is initialized when an enrollment is created.
+ * It is updated when a student starts or completes a tutorial.
+ */
 @Embeddable
 public class ProgressRecord {
 
@@ -18,7 +28,7 @@ public class ProgressRecord {
     }
 
     public void initializeProgressRecord(Enrollment enrollment, LearningPath learningPath) {
-        Tutorial  tutorial = learningPath.getFirstTutorialInLearningPath();
+        Tutorial tutorial = learningPath.getFirstTutorialInLearningPath();
         ProgressRecordItem progressRecordItem = new ProgressRecordItem(enrollment, tutorial);
         progressRecordItems.add(progressRecordItem);
     }
