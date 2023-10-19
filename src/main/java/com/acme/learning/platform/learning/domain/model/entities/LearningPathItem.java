@@ -1,6 +1,7 @@
 package com.acme.learning.platform.learning.domain.model.entities;
 
 import com.acme.learning.platform.learning.domain.model.aggregates.Course;
+import com.acme.learning.platform.shared.domain.model.entities.AuditableModel;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -8,7 +9,7 @@ import lombok.Getter;
  * Represents an item in the learning path.
  */
 @Entity
-public class LearningPathItem {
+public class LearningPathItem extends AuditableModel {
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
