@@ -5,6 +5,7 @@ import com.acme.learning.platform.profiles.domain.model.valueobjects.EmailAddres
 import com.acme.learning.platform.profiles.domain.model.valueobjects.PersonName;
 import com.acme.learning.platform.profiles.domain.model.valueobjects.StreetAddress;
 import jakarta.persistence.*;
+import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.AbstractAggregateRoot;
@@ -16,6 +17,7 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Profile extends AbstractAggregateRoot<Profile> {
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -62,7 +64,4 @@ public class Profile extends AbstractAggregateRoot<Profile> {
         return this.address.getStreetAddress();
     }
 
-    public Long getId() {
-        return this.id;
-    }
 }

@@ -20,11 +20,11 @@ public class Student extends AuditableModel {
     private ProfileId profileId;
 
     @Embedded
-    private StudentPerformanceMetricSet performanceMetrics;
+    private StudentPerformanceMetricSet performanceMetricSet;
 
     public Student() {
         this.acmeStudentRecordId = new AcmeStudentRecordId();
-        this.performanceMetrics = new StudentPerformanceMetricSet();
+        this.performanceMetricSet = new StudentPerformanceMetricSet();
     }
 
     public Student(Long profileId) {
@@ -33,11 +33,11 @@ public class Student extends AuditableModel {
     }
 
     public void updateMetricsOnCourseCompleted() {
-        this.performanceMetrics = this.performanceMetrics.incrementTotalCompletedCourses();
+        this.performanceMetricSet = this.performanceMetricSet.incrementTotalCompletedCourses();
     }
 
     public void updateMetricsOnTutorialCompleted() {
-        this.performanceMetrics = this.performanceMetrics.incrementTotalTutorials();
+        this.performanceMetricSet = this.performanceMetricSet.incrementTotalTutorials();
     }
 
     public String getStudentRecordId() {

@@ -75,6 +75,9 @@ public class Enrollment extends AbstractAggregateRoot<Enrollment> {
         // this.registerEvent(new EnrollmentCancelledEvent(this));
     }
 
+    public String getStatus() {
+        return this.status.name().toLowerCase();
+    }
     public long calculateDaysElapsed() {
         return progressRecord.calculateDaysElapsedForEnrollment(this);
     }
