@@ -23,6 +23,7 @@ public class Profile extends AbstractAggregateRoot<Profile> {
     private Long id;
     @Embedded
     private PersonName name;
+    @Getter
     @Embedded
     private EmailAddress email;
 
@@ -70,6 +71,10 @@ public class Profile extends AbstractAggregateRoot<Profile> {
 
     public String getStreetAddress() {
         return this.address.getStreetAddress();
+    }
+
+    public String getEmailAddress() {
+        return this.email.address();
     }
 
 }
