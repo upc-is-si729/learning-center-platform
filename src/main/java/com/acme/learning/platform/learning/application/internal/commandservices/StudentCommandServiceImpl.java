@@ -11,6 +11,12 @@ import org.springframework.stereotype.Service;
 
 /**
  * Implementation of StudentCommandService
+ *
+ * <p>
+ *     This class is the implementation of the StudentCommandService interface.
+ *     It is used by the LearningContext to handle commands on the Student aggregate.
+ * </p>
+ *
  */
 @Service
 public class StudentCommandServiceImpl implements StudentCommandService {

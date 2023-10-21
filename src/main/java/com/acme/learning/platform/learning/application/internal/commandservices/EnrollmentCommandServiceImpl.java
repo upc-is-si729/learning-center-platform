@@ -12,6 +12,12 @@ import org.springframework.stereotype.Service;
 
 /**
  * Implementation of EnrollmentCommandService
+ *
+ * <p>
+ *     This class is the implementation of the EnrollmentCommandService interface.
+ *     It is used by the EnrollmentContext to handle commands on the Enrollment aggregate.
+ * </p>
+ *
  */
 @Service
 public class EnrollmentCommandServiceImpl implements EnrollmentCommandService {

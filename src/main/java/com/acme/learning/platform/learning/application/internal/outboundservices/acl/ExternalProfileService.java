@@ -8,9 +8,12 @@ import java.util.Optional;
 
 /**
  * ExternalProfileService
+ *
  * <p>
- *     This class is a facade to the Profiles Context, available to other bounded contexts.
+ *     This class is an outbound service used by the Learning Context to interact with the Profiles Context.
+ *     It is implemented as part of an anti-corruption layer (ACL) to decouple the Learning Context from the Profiles Context.
  * </p>
+ *
  */
 @Service
 public class ExternalProfileService {
