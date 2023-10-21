@@ -10,6 +10,9 @@ import com.acme.learning.platform.learning.infrastructure.repositories.Enrollmen
 import com.acme.learning.platform.learning.infrastructure.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of EnrollmentCommandService
+ */
 @Service
 public class EnrollmentCommandServiceImpl implements EnrollmentCommandService {
     private final CourseRepository courseRepository;
@@ -17,12 +20,25 @@ public class EnrollmentCommandServiceImpl implements EnrollmentCommandService {
     private final StudentRepository studentRepository;
     private final EnrollmentRepository enrollmentRepository;
 
+    /**
+     * Constructor
+     *
+     * @param courseRepository     CourseRepository
+     * @param studentRepository    StudentRepository
+     * @param enrollmentRepository EnrollmentRepository
+     */
     public EnrollmentCommandServiceImpl(CourseRepository courseRepository, StudentRepository studentRepository, EnrollmentRepository enrollmentRepository) {
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;
         this.enrollmentRepository = enrollmentRepository;
     }
 
+    /**
+     * Command handler to request enrollment
+     *
+     * @param command containing studentRecordId and courseId
+     * @return enrollmentId
+     */
     public Long handle(RequestEnrollmentCommand command) {
         studentRepository.findByAcmeStudentRecordId(command.studentRecordId()).map(student -> {
             Course course = courseRepository.findById(command.courseId()).orElseThrow(() -> new CourseNotFoundException(command.courseId()));
@@ -33,6 +49,12 @@ public class EnrollmentCommandServiceImpl implements EnrollmentCommandService {
         return 0L;
     }
 
+    /**
+     * Command handler to confirm enrollment
+     *
+     * @param command containing enrollmentId
+     * @return enrollmentId
+     */
     @Override
     public Long handle(ConfirmEnrollmentCommand command) {
         enrollmentRepository.findById(command.enrollmentId()).map(enrollment -> {
@@ -43,6 +65,12 @@ public class EnrollmentCommandServiceImpl implements EnrollmentCommandService {
         return null;
     }
 
+    /**
+     * Command handler to reject enrollment
+     *
+     * @param command containing enrollmentId
+     * @return enrollmentId
+     */
     @Override
     public Long handle(RejectEnrollmentCommand command) {
         enrollmentRepository.findById(command.enrollmentId()).map(enrollment -> {
@@ -53,6 +81,12 @@ public class EnrollmentCommandServiceImpl implements EnrollmentCommandService {
         return null;
     }
 
+    /**
+     * Command handler to cancel enrollment
+     *
+     * @param command containing enrollmentId
+     * @return enrollmentId
+     */
     @Override
     public Long handle(CancelEnrollmentCommand command) {
         enrollmentRepository.findById(command.enrollmentId()).map(enrollment -> {
@@ -63,6 +97,12 @@ public class EnrollmentCommandServiceImpl implements EnrollmentCommandService {
         return null;
     }
 
+    /**
+     * Command handler to complete tutorial for enrollment
+     *
+     * @param command containing enrollmentId and tutorialId
+     * @return enrollmentId
+     */
     @Override
     public Long handle(CompleteTutorialForEnrollmentCommand command) {
         enrollmentRepository.findById(command.enrollmentId()).map(enrollment -> {

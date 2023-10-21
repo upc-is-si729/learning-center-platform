@@ -8,6 +8,12 @@ import com.acme.learning.platform.shared.domain.events.TutorialCompletedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
+/**
+ * TutorialCompletedEventHandler
+ * <p>
+ *     This event handler is responsible for handling TutorialCompletedEvent.
+ * </p>
+ */
 @Service
 public class TutorialCompletedEventHandler {
     private final StudentCommandService studentCommandService;
@@ -18,11 +24,19 @@ public class TutorialCompletedEventHandler {
         this.enrollmentQueryService = enrollmentQueryService;
     }
 
+    /**
+     * Event handler for TutorialCompletedEvent
+     *
+     * @param event TutorialCompletedEvent containing enrollmentId and tutorialId
+     *
+     */
     @EventListener(TutorialCompletedEvent.class)
     public void on(TutorialCompletedEvent event) {
+        // Fetch enrollment by enrollmentId
         var getEnrollmentByIdQuery = new GetEnrollmentByIdQuery(event.getEnrollmentId());
         var enrollment = enrollmentQueryService.handle(getEnrollmentByIdQuery);
         if (enrollment.isPresent()) {
+            // Update student metrics on course completed
             var updateStudentMetricsOnCourseCompletedCommand = new UpdateStudentMetricsOnCourseCompletedCommand(enrollment.get().getAcmeStudentRecordId());
             studentCommandService.handle(updateStudentMetricsOnCourseCompletedCommand);
         }

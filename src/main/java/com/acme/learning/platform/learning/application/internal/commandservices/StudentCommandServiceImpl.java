@@ -9,6 +9,9 @@ import com.acme.learning.platform.learning.domain.services.StudentCommandService
 import com.acme.learning.platform.learning.infrastructure.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of StudentCommandService
+ */
 @Service
 public class StudentCommandServiceImpl implements StudentCommandService {
     private final StudentRepository studentRepository;
@@ -19,6 +22,12 @@ public class StudentCommandServiceImpl implements StudentCommandService {
         this.externalProfileService = externalProfileService;
     }
 
+    //**
+    // * Command handler to create student
+    // *
+    // * @param command containing student details
+    // * @return AcmeStudentRecordId
+    // */
     @Override
     public AcmeStudentRecordId handle(CreateStudentCommand command) {
 
@@ -44,9 +53,16 @@ public class StudentCommandServiceImpl implements StudentCommandService {
         return student.getAcmeStudentRecordId();
     }
 
+    //**
+    // * Command handler to update student metrics on course completed
+    // *
+    // * @param command containing studentRecordId
+    // * @return AcmeStudentRecordId
+    // */
     @Override
     public AcmeStudentRecordId handle(UpdateStudentMetricsOnCourseCompletedCommand command) {
         studentRepository.findByAcmeStudentRecordId(command.studentRecordId()).map(student -> {
+            // Update student metrics
             student.updateMetricsOnCourseCompleted();
             studentRepository.save(student);
             return student.getAcmeStudentRecordId();

@@ -6,6 +6,13 @@ import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
 
 import static io.github.encryptorcode.pluralize.Pluralize.pluralize;
 
+/**
+ * SnakeCasePhysicalNamingStrategy
+ * <p>
+ *     This class is responsible for converting database object names to snake case.
+ *     It also pluralizes table names.
+ * </p>
+ */
 public class SnakeCasePhysicalNamingStrategy implements PhysicalNamingStrategy {
 
     @Override
