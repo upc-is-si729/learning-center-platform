@@ -3,7 +3,7 @@ package com.acme.learning.platform.learning.application.internal.queryservices;
 import com.acme.learning.platform.learning.domain.model.aggregates.Student;
 import com.acme.learning.platform.learning.domain.model.queries.GetStudentByProfileIdQuery;
 import com.acme.learning.platform.learning.domain.services.StudentQueryService;
-import com.acme.learning.platform.learning.infrastructure.repositories.StudentRepository;
+import com.acme.learning.platform.learning.infrastructure.persistence.jpa.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

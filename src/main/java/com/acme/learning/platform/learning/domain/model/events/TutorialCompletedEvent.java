@@ -1,4 +1,4 @@
-package com.acme.learning.platform.shared.domain.events;
+package com.acme.learning.platform.learning.domain.model.events;
 
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;

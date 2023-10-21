@@ -4,7 +4,7 @@ import com.acme.learning.platform.profiles.domain.model.aggregates.Profile;
 import com.acme.learning.platform.profiles.domain.model.commands.CreateProfileCommand;
 import com.acme.learning.platform.profiles.domain.model.valueobjects.EmailAddress;
 import com.acme.learning.platform.profiles.domain.services.ProfileCommandService;
-import com.acme.learning.platform.profiles.infrastructure.persistence.repositories.ProfileRepository;
+import com.acme.learning.platform.profiles.infrastructure.persistence.jpa.repositories.ProfileRepository;
 import org.springframework.stereotype.Service;
 
 @Service

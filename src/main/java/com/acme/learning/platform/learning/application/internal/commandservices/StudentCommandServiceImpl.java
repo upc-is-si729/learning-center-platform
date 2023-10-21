@@ -6,7 +6,7 @@ import com.acme.learning.platform.learning.domain.model.commands.CreateStudentCo
 import com.acme.learning.platform.learning.domain.model.commands.UpdateStudentMetricsOnCourseCompletedCommand;
 import com.acme.learning.platform.learning.domain.model.valueobjects.AcmeStudentRecordId;
 import com.acme.learning.platform.learning.domain.services.StudentCommandService;
-import com.acme.learning.platform.learning.infrastructure.repositories.StudentRepository;
+import com.acme.learning.platform.learning.infrastructure.persistence.jpa.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
 /**

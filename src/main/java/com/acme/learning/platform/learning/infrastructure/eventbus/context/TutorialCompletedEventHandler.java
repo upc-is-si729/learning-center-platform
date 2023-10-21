@@ -1,10 +1,10 @@
-package com.acme.learning.platform.learning.interfaces.events;
+package com.acme.learning.platform.learning.infrastructure.eventbus.context;
 
 import com.acme.learning.platform.learning.domain.model.commands.UpdateStudentMetricsOnCourseCompletedCommand;
 import com.acme.learning.platform.learning.domain.model.queries.GetEnrollmentByIdQuery;
 import com.acme.learning.platform.learning.domain.services.EnrollmentQueryService;
 import com.acme.learning.platform.learning.domain.services.StudentCommandService;
-import com.acme.learning.platform.shared.domain.events.TutorialCompletedEvent;
+import com.acme.learning.platform.learning.domain.model.events.TutorialCompletedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
  * TutorialCompletedEventHandler
  * <p>
  *     This event handler is responsible for handling TutorialCompletedEvent.
+ *     It uses EventListener from Spring Boot Context Event Bus to listen to TutorialCompletedEvent.
  * </p>
  */
 @Service

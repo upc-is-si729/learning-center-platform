@@ -1,4 +1,4 @@
-package com.acme.learning.platform.profiles.infrastructure.persistence.repositories;
+package com.acme.learning.platform.profiles.infrastructure.persistence.jpa.repositories;
 
 import com.acme.learning.platform.profiles.domain.model.aggregates.Profile;
 import com.acme.learning.platform.profiles.domain.model.valueobjects.EmailAddress;

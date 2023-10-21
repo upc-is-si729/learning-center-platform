@@ -4,7 +4,7 @@ import com.acme.learning.platform.profiles.domain.model.aggregates.Profile;
 import com.acme.learning.platform.profiles.domain.model.queries.GetProfileByEmailQuery;
 import com.acme.learning.platform.profiles.domain.model.queries.GetProfileByIdQuery;
 import com.acme.learning.platform.profiles.domain.services.ProfileQueryService;
-import com.acme.learning.platform.profiles.infrastructure.persistence.repositories.ProfileRepository;
+import com.acme.learning.platform.profiles.infrastructure.persistence.jpa.repositories.ProfileRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
