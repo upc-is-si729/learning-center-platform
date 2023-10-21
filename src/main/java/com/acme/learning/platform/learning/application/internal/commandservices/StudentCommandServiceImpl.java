@@ -3,6 +3,7 @@ package com.acme.learning.platform.learning.application.internal.commandservices
 import com.acme.learning.platform.learning.application.internal.outboundservices.acl.ExternalProfileService;
 import com.acme.learning.platform.learning.domain.model.aggregates.Student;
 import com.acme.learning.platform.learning.domain.model.commands.CreateStudentCommand;
+import com.acme.learning.platform.learning.domain.model.commands.UpdateStudentMetricsOnCourseCompletedCommand;
 import com.acme.learning.platform.learning.domain.model.valueobjects.AcmeStudentRecordId;
 import com.acme.learning.platform.learning.domain.services.StudentCommandService;
 import com.acme.learning.platform.learning.infrastructure.repositories.StudentRepository;
@@ -35,11 +36,21 @@ public class StudentCommandServiceImpl implements StudentCommandService {
         }
 
         // If profileId is still empty, throw exception
-        if(profileId.isEmpty()) throw new IllegalArgumentException("Unable to create profile");
+        if (profileId.isEmpty()) throw new IllegalArgumentException("Unable to create profile");
 
         // Create student using fetched or created profileId
         var student = new Student(profileId.get());
         studentRepository.save(student);
         return student.getAcmeStudentRecordId();
+    }
+
+    @Override
+    public AcmeStudentRecordId handle(UpdateStudentMetricsOnCourseCompletedCommand command) {
+        studentRepository.findByAcmeStudentRecordId(command.studentRecordId()).map(student -> {
+            student.updateMetricsOnCourseCompleted();
+            studentRepository.save(student);
+            return student.getAcmeStudentRecordId();
+        }).orElseThrow(() -> new IllegalArgumentException("Student with given Id not found"));
+        return null;
     }
 }
