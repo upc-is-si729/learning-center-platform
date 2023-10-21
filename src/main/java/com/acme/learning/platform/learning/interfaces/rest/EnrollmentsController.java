@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Outbound service for the Enrollment aggregate.
+ * Inbound service for the Enrollment aggregate.
  * <p>
  * This controller is responsible for handling requests related to the Enrollment aggregate.
  * <p>
