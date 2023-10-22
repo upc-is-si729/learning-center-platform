@@ -1,4 +1,4 @@
-package com.acme.learning.platform.learning.infrastructure.eventbus.context;
+package com.acme.learning.platform.learning.application.internal.eventhandlers;
 
 import com.acme.learning.platform.learning.domain.model.commands.UpdateStudentMetricsOnCourseCompletedCommand;
 import com.acme.learning.platform.learning.domain.model.queries.GetEnrollmentByIdQuery;
