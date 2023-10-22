@@ -17,11 +17,11 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public class ProfileContextFacade {
+public class ProfilesContextFacade {
     private final ProfileCommandService profileCommandService;
     private final ProfileQueryService profileQueryService;
 
-    public ProfileContextFacade(ProfileCommandService profileCommandService, ProfileQueryService profileQueryService) {
+    public ProfilesContextFacade(ProfileCommandService profileCommandService, ProfileQueryService profileQueryService) {
         this.profileCommandService = profileCommandService;
         this.profileQueryService = profileQueryService;
     }

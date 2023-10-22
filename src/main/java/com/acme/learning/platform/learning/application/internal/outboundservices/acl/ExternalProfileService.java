@@ -1,7 +1,7 @@
 package com.acme.learning.platform.learning.application.internal.outboundservices.acl;
 
 import com.acme.learning.platform.learning.domain.model.valueobjects.ProfileId;
-import com.acme.learning.platform.profiles.interfaces.acl.ProfileContextFacade;
+import com.acme.learning.platform.profiles.interfaces.acl.ProfilesContextFacade;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,10 +18,10 @@ import java.util.Optional;
 @Service
 public class ExternalProfileService {
 
-    private final ProfileContextFacade profileContextFacade;
+    private final ProfilesContextFacade profilesContextFacade;
 
-    public ExternalProfileService(ProfileContextFacade profileContextFacade) {
-        this.profileContextFacade = profileContextFacade;
+    public ExternalProfileService(ProfilesContextFacade profilesContextFacade) {
+        this.profilesContextFacade = profilesContextFacade;
     }
 
     /**
@@ -31,7 +31,7 @@ public class ExternalProfileService {
      * @return profileId if found, empty otherwise
      */
     public Optional<ProfileId> fetchProfileIdByEmail(String email) {
-        var profileId = profileContextFacade.fetchProfileIdByEmail(email);
+        var profileId = profilesContextFacade.fetchProfileIdByEmail(email);
         if (profileId == 0L) return Optional.empty();
         return Optional.of(new ProfileId(profileId));
     }
@@ -49,7 +49,7 @@ public class ExternalProfileService {
      * @return profileId if created, empty otherwise
      */
     public Optional<ProfileId> createProfile(String firstName, String lastName, String email, String streetAddress, String city, String state, String zipCode) {
-        var profileId = profileContextFacade.createProfile(firstName, lastName, email, streetAddress, city, state, zipCode);
+        var profileId = profilesContextFacade.createProfile(firstName, lastName, email, streetAddress, city, state, zipCode);
         if (profileId == 0L) return Optional.empty();
         return Optional.of(new ProfileId(profileId));
     }
