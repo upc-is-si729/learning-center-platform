@@ -1,6 +1,6 @@
 package com.acme.learning.platform.learning.application.internal.eventhandlers;
 
-import com.acme.learning.platform.learning.domain.model.commands.UpdateStudentMetricsOnCourseCompletedCommand;
+import com.acme.learning.platform.learning.domain.model.commands.UpdateStudentMetricsOnTutorialCompletedCommand;
 import com.acme.learning.platform.learning.domain.model.queries.GetEnrollmentByIdQuery;
 import com.acme.learning.platform.learning.domain.services.EnrollmentQueryService;
 import com.acme.learning.platform.learning.domain.services.StudentCommandService;
@@ -37,9 +37,9 @@ public class TutorialCompletedEventHandler {
         var getEnrollmentByIdQuery = new GetEnrollmentByIdQuery(event.getEnrollmentId());
         var enrollment = enrollmentQueryService.handle(getEnrollmentByIdQuery);
         if (enrollment.isPresent()) {
-            // Update student metrics on course completed
-            var updateStudentMetricsOnCourseCompletedCommand = new UpdateStudentMetricsOnCourseCompletedCommand(enrollment.get().getAcmeStudentRecordId());
-            studentCommandService.handle(updateStudentMetricsOnCourseCompletedCommand);
+            // Update student metrics on tutorial completed
+            var updateStudentMetricsOnTutorialCompletedCommand = new UpdateStudentMetricsOnTutorialCompletedCommand(enrollment.get().getAcmeStudentRecordId());
+            studentCommandService.handle(updateStudentMetricsOnTutorialCompletedCommand);
         }
         System.out.println("TutorialCompletedEventHandler executed");
     }

@@ -3,7 +3,7 @@ package com.acme.learning.platform.learning.application.internal.commandservices
 import com.acme.learning.platform.learning.application.internal.outboundservices.acl.ExternalProfileService;
 import com.acme.learning.platform.learning.domain.model.aggregates.Student;
 import com.acme.learning.platform.learning.domain.model.commands.CreateStudentCommand;
-import com.acme.learning.platform.learning.domain.model.commands.UpdateStudentMetricsOnCourseCompletedCommand;
+import com.acme.learning.platform.learning.domain.model.commands.UpdateStudentMetricsOnTutorialCompletedCommand;
 import com.acme.learning.platform.learning.domain.model.valueobjects.AcmeStudentRecordId;
 import com.acme.learning.platform.learning.domain.services.StudentCommandService;
 import com.acme.learning.platform.learning.infrastructure.persistence.jpa.repositories.StudentRepository;
@@ -60,16 +60,16 @@ public class StudentCommandServiceImpl implements StudentCommandService {
     }
 
     //**
-    // * Command handler to update student metrics on course completed
+    // * Command handler to update student metrics on tutorial completed
     // *
     // * @param command containing studentRecordId
     // * @return AcmeStudentRecordId
     // */
     @Override
-    public AcmeStudentRecordId handle(UpdateStudentMetricsOnCourseCompletedCommand command) {
+    public AcmeStudentRecordId handle(UpdateStudentMetricsOnTutorialCompletedCommand command) {
         studentRepository.findByAcmeStudentRecordId(command.studentRecordId()).map(student -> {
             // Update student metrics
-            student.updateMetricsOnCourseCompleted();
+            student.updateMetricsOnTutorialCompleted();
             studentRepository.save(student);
             return student.getAcmeStudentRecordId();
         }).orElseThrow(() -> new IllegalArgumentException("Student with given Id not found"));
