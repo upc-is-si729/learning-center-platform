@@ -38,7 +38,7 @@ public record StreetAddress(
     }
 
     public String getStreetAddress() {
-        return street + " " + number;
+        return String.format("%s %s %s %s %s", street, number, city, zipCode, country);
     }
 }
 
