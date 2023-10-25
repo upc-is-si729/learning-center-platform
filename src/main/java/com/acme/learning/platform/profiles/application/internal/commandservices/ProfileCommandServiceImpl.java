@@ -7,6 +7,11 @@ import com.acme.learning.platform.profiles.domain.services.ProfileCommandService
 import com.acme.learning.platform.profiles.infrastructure.persistence.jpa.repositories.ProfileRepository;
 import org.springframework.stereotype.Service;
 
+/**
+ * ProfileCommandServiceImpl
+ *
+ * <p>Service that handles the commands for profiles</p>
+ */
 @Service
 public class ProfileCommandServiceImpl implements ProfileCommandService {
     private final ProfileRepository profileRepository;

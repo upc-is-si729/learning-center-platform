@@ -3,6 +3,12 @@ package com.acme.learning.platform.profiles.domain.model.valueobjects;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 
+/**
+ * Street Address
+ * <p>
+ * Value object representing a street address.
+ * </p>
+ */
 @Embeddable
 public record StreetAddress(
         String street,

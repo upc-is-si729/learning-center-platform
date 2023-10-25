@@ -28,10 +28,12 @@ public class ProfilesContextFacade {
 
     /**
      * Creates a new Profile
+     *
      * @param firstName the first name
      * @param lastName the last name
      * @param email the email
-     * @param streetAddress the street address
+     * @param street the street address
+     * @param number the number
      * @param city the city
      * @param state the state
      * @param zipCode the zip code
@@ -44,6 +46,7 @@ public class ProfilesContextFacade {
 
     /**
      * Fetches the profile id by email
+     *
      * @param email the email
      * @return the profile id
      */
