@@ -42,14 +42,15 @@ public class ExternalProfileService {
      * @param firstName the first name
      * @param lastName the last name
      * @param email the email
-     * @param streetAddress the street address
+     * @param street the street address
+     * @param number the number
      * @param city the city
      * @param state the state
      * @param zipCode the zip code
      * @return profileId if created, empty otherwise
      */
-    public Optional<ProfileId> createProfile(String firstName, String lastName, String email, String streetAddress, String city, String state, String zipCode) {
-        var profileId = profilesContextFacade.createProfile(firstName, lastName, email, streetAddress, city, state, zipCode);
+    public Optional<ProfileId> createProfile(String firstName, String lastName, String email, String street, String number, String city, String state, String zipCode) {
+        var profileId = profilesContextFacade.createProfile(firstName, lastName, email, street, number, city, state, zipCode);
         if (profileId == 0L) return Optional.empty();
         return Optional.of(new ProfileId(profileId));
     }

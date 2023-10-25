@@ -5,6 +5,6 @@ import com.acme.learning.platform.profiles.interfaces.rest.resources.CreateProfi
 
 public class CreateProfileCommandFromResourceAssembler {
     public static CreateProfileCommand toCommandFromResource(CreateProfileResource resource) {
-        return new CreateProfileCommand(resource.firstName(), resource.lastName(), resource.email(), resource.streetAddress(), resource.city(), resource.state(), resource.zipCode());
+        return new CreateProfileCommand(resource.firstName(), resource.lastName(), resource.email(), resource.street(), resource.number(), resource.city(), resource.state(), resource.zipCode());
     }
 }

@@ -42,7 +42,7 @@ public class StudentCommandServiceImpl implements StudentCommandService {
 
         // If profileId is empty, create profile
         if (profileId.isEmpty()) {
-            profileId = externalProfileService.createProfile(command.firstName(), command.lastName(), command.email(), command.streetAddress(), command.city(), command.state(), command.zipCode());
+            profileId = externalProfileService.createProfile(command.firstName(), command.lastName(), command.email(), command.street(), command.number(), command.city(), command.state(), command.zipCode());
         } else {
             // If profileId is not empty, check if student exists
             studentRepository.findByProfileId(profileId.get()).ifPresent(student -> {
