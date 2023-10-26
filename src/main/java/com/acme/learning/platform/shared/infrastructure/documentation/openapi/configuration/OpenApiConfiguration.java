@@ -16,7 +16,7 @@ public class OpenApiConfiguration {
                         .description(
                         "ACME Learning Platform application REST API documentation.")
                         .version("v1.0.0")
-                        .license(new License().name("Apache 2.0").url("http://springdoc.org")))
+                        .license(new License().name("Apache 2.0").url("https://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()
                         .description("ACME Learning Platform Wiki Documentation")
                         .url("https://acme-learning-platform.wiki.github.org/docs"));
