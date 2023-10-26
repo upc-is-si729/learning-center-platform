@@ -10,7 +10,9 @@ import com.acme.learning.platform.learning.interfaces.rest.resources.RequestEnro
 import com.acme.learning.platform.learning.interfaces.rest.resources.EnrollmentResource;
 import com.acme.learning.platform.learning.interfaces.rest.transform.RequestEnrollmentCommandFromResourceAssembler;
 import com.acme.learning.platform.learning.interfaces.rest.transform.EnrollmentResourceFromEntityAssembler;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +24,8 @@ import org.springframework.web.bind.annotation.*;
  *
  */
 @RestController
-@RequestMapping("/api/v1/enrollments")
+@RequestMapping(value = "/api/v1/enrollments", produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name = "Enrollments", description = "Enrollment Management Endpoints")
 public class EnrollmentsController {
     private final EnrollmentCommandService enrollmentCommandService;
     private final EnrollmentQueryService enrollmentQueryService;
