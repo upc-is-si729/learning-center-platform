@@ -1,5 +1,6 @@
 package com.acme.learning.platform.learning.domain.model.events;
 
+import com.acme.learning.platform.learning.application.internal.eventhandlers.TutorialCompletedEventHandler;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
@@ -7,7 +8,10 @@ import org.springframework.context.ApplicationEvent;
  * TutorialCompletedEvent
  * <p>
  *     This event is fired when a tutorial is completed.
+ *     It contains enrollmentId and tutorialId.
+ *     It is used by TutorialCompletedEventHandler to update student metrics.
  * </p>
+ * @see TutorialCompletedEventHandler
  */
 @Getter
 public final class TutorialCompletedEvent extends ApplicationEvent {

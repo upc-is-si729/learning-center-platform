@@ -27,9 +27,14 @@ public class TutorialCompletedEventHandler {
 
     /**
      * Event handler for TutorialCompletedEvent
-     *
+     * <p>
+     *     This method is called when TutorialCompletedEvent is fired.
+     *     It fetches the enrollment by enrollmentId and updates the student metrics.
+     *     It uses the {@link EnrollmentQueryService} to fetch the enrollment.
+     *     It uses the {@link StudentCommandService} to update the student metrics.
+     * </p>
      * @param event TutorialCompletedEvent containing enrollmentId and tutorialId
-     *
+     * @see TutorialCompletedEvent
      */
     @EventListener(TutorialCompletedEvent.class)
     public void on(TutorialCompletedEvent event) {
