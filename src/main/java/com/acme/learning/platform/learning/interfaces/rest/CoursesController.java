@@ -1,6 +1,5 @@
 package com.acme.learning.platform.learning.interfaces.rest;
 
-import com.acme.learning.platform.learning.domain.model.commands.CreateCourseCommand;
 import com.acme.learning.platform.learning.domain.model.commands.DeleteCourseCommand;
 import com.acme.learning.platform.learning.domain.model.queries.GetAllCoursesQuery;
 import com.acme.learning.platform.learning.domain.model.queries.GetCourseByIdQuery;
@@ -10,6 +9,7 @@ import com.acme.learning.platform.learning.interfaces.rest.resources.CourseResou
 import com.acme.learning.platform.learning.interfaces.rest.resources.CreateCourseResource;
 import com.acme.learning.platform.learning.interfaces.rest.resources.UpdateCourseResource;
 import com.acme.learning.platform.learning.interfaces.rest.transform.CourseResourceFromEntityAssembler;
+import com.acme.learning.platform.learning.interfaces.rest.transform.CreateCourseCommandFromResourceAssembler;
 import com.acme.learning.platform.learning.interfaces.rest.transform.UpdateCourseCommandFromResourceAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -51,7 +51,7 @@ public class CoursesController {
      */
     @PostMapping
     public ResponseEntity<CourseResource> createCourse(@RequestBody CreateCourseResource createCourseResource) {
-        var createCourseCommand = new CreateCourseCommand(createCourseResource.title(), createCourseResource.description());
+        var createCourseCommand = CreateCourseCommandFromResourceAssembler.toCommandFromResource(createCourseResource);
         var courseId = courseCommandService.handle(createCourseCommand);
         if (courseId == 0L) {
             return ResponseEntity.badRequest().build();
