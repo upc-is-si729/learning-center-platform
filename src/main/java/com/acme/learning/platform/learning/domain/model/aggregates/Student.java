@@ -7,6 +7,10 @@ import com.acme.learning.platform.shared.domain.model.entities.AuditableModel;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+/**
+ * Represents a student.
+ * The student is an aggregate root.
+ */
 @Entity
 public class Student extends AuditableModel {
     @Id
@@ -39,10 +43,20 @@ public class Student extends AuditableModel {
         this.profileId = profileId;
     }
 
+    /**
+     * Updates the student metrics when a course is completed.
+     * It increments the total completed courses.
+     *
+     */
     public void updateMetricsOnCourseCompleted() {
         this.performanceMetricSet = this.performanceMetricSet.incrementTotalCompletedCourses();
     }
 
+    /**
+     * Updates the student metrics when a tutorial is completed.
+     * It increments the total completed tutorials.
+     *
+     */
     public void updateMetricsOnTutorialCompleted() {
         this.performanceMetricSet = this.performanceMetricSet.incrementTotalTutorials();
     }

@@ -40,6 +40,10 @@ public class LearningPathItem extends AuditableModel {
         this.nextItem = null;
     }
 
+    /**
+     * Updates the next item in the learning path.
+     * @param nextItem The next item.
+     */
     public void updateNextItem(LearningPathItem nextItem) {
         this.nextItem = nextItem;
     }

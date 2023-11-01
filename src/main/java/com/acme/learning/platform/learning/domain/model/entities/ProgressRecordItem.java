@@ -12,6 +12,9 @@ import lombok.Getter;
 import java.time.LocalDate;
 import java.util.Date;
 
+/**
+ * Represents an item in the progress record.
+ */
 @Entity
 public class ProgressRecordItem extends AuditableModel {
     @Id
@@ -43,24 +46,45 @@ public class ProgressRecordItem extends AuditableModel {
 
     }
 
+    /**
+     * Starts the item.
+     */
     public void start() {
         this.status = ProgressStatus.STARTED;
         this.startedAt = new Date();
     }
 
+    /**
+     * Completes the item.
+     */
     public void complete() {
         this.status = ProgressStatus.COMPLETED;
         this.completedAt = new Date();
     }
 
+    /**
+     * Returns a boolean indicating if the item is completed.
+     *
+     * @return true if the item is completed.
+     */
     public boolean isCompleted() {
         return this.status == ProgressStatus.COMPLETED;
     }
 
+    /**
+     * Returns a boolean indicating if the item is in progress.
+     *
+     * @return true if the item is in progress.
+     */
     public boolean isInProgress() {
         return this.status == ProgressStatus.STARTED;
     }
 
+    /**
+     * Returns a boolean indicating if the item is not started.
+     *
+     * @return true if the item is not started.
+     */
     public boolean isNotStarted() {
         return this.status == ProgressStatus.NOT_STARTED;
     }

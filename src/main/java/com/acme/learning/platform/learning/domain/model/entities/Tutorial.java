@@ -5,7 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;
 
-
+/**
+ * Represents a tutorial.
+ */
 @Entity
 public class Tutorial extends AuditableModel {
     @Getter

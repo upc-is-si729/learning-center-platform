@@ -59,37 +59,69 @@ public class Enrollment extends AbstractAggregateRoot<Enrollment> {
         this.progressRecord = new ProgressRecord();
     }
 
+    /**
+     * Confirms the enrollment.
+     */
     public void confirm() {
         this.status = EnrollmentStatus.CONFIRMED;
         this.progressRecord.initializeProgressRecord(this, course.getLearningPath());
         // this.registerEvent(new EnrollmentConfirmedEvent(this));
     }
 
+    /**
+     * Rejects the enrollment.
+     */
     public void reject() {
         this.status = EnrollmentStatus.REJECTED;
         // this.registerEvent(new EnrollmentRejectedEvent(this));
     }
 
+    /**
+     * Cancels the enrollment.
+     */
     public void cancel() {
         this.status = EnrollmentStatus.CANCELLED;
         // this.registerEvent(new EnrollmentCancelledEvent(this));
     }
 
+    /**
+     * Returns the status of the enrollment.
+     * @return The status of the enrollment.
+     */
     public String getStatus() {
         return this.status.name().toLowerCase();
     }
+
+    /**
+     * Returns how many days have elapsed since the enrollment was confirmed.
+     * @return The number of days elapsed since the enrollment was confirmed.
+     */
     public long calculateDaysElapsed() {
         return progressRecord.calculateDaysElapsedForEnrollment(this);
     }
 
+    /**
+     * Returns if the enrollment is confirmed.
+     * @return true if the enrollment is confirmed. Otherwise, false.
+     */
     public boolean isConfirmed() {
         return this.status == EnrollmentStatus.CONFIRMED;
     }
 
+    /**
+     * Returns if the enrollment is cancelled.
+     * @return true if the enrollment is cancelled. Otherwise, false.
+     */
     public boolean isRejected() {
         return this.status == EnrollmentStatus.REJECTED;
     }
 
+    /**
+     * Marks a tutorial as completed in progress record.
+     * @param tutorialId The id of the tutorial to mark as completed.
+     *                   The tutorial must be part of the learning path of the course.
+     *                   Otherwise, an exception will be thrown.
+     */
     public void completeTutorial(Long tutorialId) {
         progressRecord.completeTutorial(tutorialId, course.getLearningPath());
         // Publish a Tutorial Completed Event
