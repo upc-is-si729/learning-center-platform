@@ -3,6 +3,7 @@ package com.acme.learning.platform.learning.interfaces.rest;
 import com.acme.learning.platform.learning.domain.model.commands.CancelEnrollmentCommand;
 import com.acme.learning.platform.learning.domain.model.commands.ConfirmEnrollmentCommand;
 import com.acme.learning.platform.learning.domain.model.commands.RejectEnrollmentCommand;
+import com.acme.learning.platform.learning.domain.model.queries.GetAllEnrollmentsQuery;
 import com.acme.learning.platform.learning.domain.model.queries.GetEnrollmentByIdQuery;
 import com.acme.learning.platform.learning.domain.services.EnrollmentCommandService;
 import com.acme.learning.platform.learning.domain.services.EnrollmentQueryService;
@@ -15,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Inbound service for the Enrollment aggregate.
@@ -103,5 +106,19 @@ public class EnrollmentsController {
         var cancelEnrollmentCommand = new CancelEnrollmentCommand(enrollmentId);
         var cancelledEnrollmentId = enrollmentCommandService.handle(cancelEnrollmentCommand);
         return ResponseEntity.ok(cancelledEnrollmentId);
+    }
+
+    /**
+     * Gets all the enrollments.
+     *
+     * @return The list of all the enrollment resources available.
+     * @see EnrollmentResource
+     */
+    @GetMapping
+    public ResponseEntity<List<EnrollmentResource>> getAllEnrollments() {
+        var getAllEnrollmentsQuery = new GetAllEnrollmentsQuery();
+        var enrollments = enrollmentQueryService.handle(getAllEnrollmentsQuery);
+        var enrollmentResources = enrollments.stream().map(EnrollmentResourceFromEntityAssembler::toResourceFromEntity).toList();
+        return ResponseEntity.ok(enrollmentResources);
     }
 }

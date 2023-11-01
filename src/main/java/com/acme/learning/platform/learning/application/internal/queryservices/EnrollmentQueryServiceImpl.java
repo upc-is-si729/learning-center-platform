@@ -1,6 +1,8 @@
 package com.acme.learning.platform.learning.application.internal.queryservices;
 
 import com.acme.learning.platform.learning.domain.model.aggregates.Enrollment;
+import com.acme.learning.platform.learning.domain.model.queries.GetAllEnrollmentsQuery;
+import com.acme.learning.platform.learning.domain.model.queries.GetCourseEnrollmentsQuery;
 import com.acme.learning.platform.learning.domain.model.queries.GetEnrollmentByIdQuery;
 import com.acme.learning.platform.learning.domain.model.queries.GetStudentEnrollmentsQuery;
 import com.acme.learning.platform.learning.domain.services.EnrollmentQueryService;
@@ -16,8 +18,8 @@ import java.util.Optional;
  * <p>
  *     This class is the implementation of the EnrollmentQueryService interface.
  *     It is used by the EnrollmentContext to handle queries on the Enrollment aggregate.
+ *     It uses the EnrollmentRepository to query the database.
  * </p>
- *
  */
 @Service
 public class EnrollmentQueryServiceImpl implements EnrollmentQueryService {
@@ -32,6 +34,8 @@ public class EnrollmentQueryServiceImpl implements EnrollmentQueryService {
      *
      * @param query containing studentRecordId
      * @return List of Enrollments
+     * @see Enrollment
+     * @see GetStudentEnrollmentsQuery
      */
     @Override
     public List<Enrollment> handle(GetStudentEnrollmentsQuery query) {
@@ -43,9 +47,37 @@ public class EnrollmentQueryServiceImpl implements EnrollmentQueryService {
      *
      * @param query containing enrollmentId
      * @return Enrollment
+     * @see Enrollment
+     * @see GetEnrollmentByIdQuery
      */
     @Override
     public Optional<Enrollment> handle(GetEnrollmentByIdQuery query) {
         return enrollmentRepository.findById(query.enrollmentId());
+    }
+
+    /**
+     * Query handler to get all enrollments
+     *
+     * @param query containing no parameters
+     * @return List of Enrollments
+     * @see Enrollment
+     * @see GetAllEnrollmentsQuery
+     */
+    @Override
+    public List<Enrollment> handle(GetAllEnrollmentsQuery query) {
+        return enrollmentRepository.findAll();
+    }
+
+    /**
+     * Query handler to get course enrollments
+     *
+     * @param query containing courseId
+     * @return List of Enrollments
+     * @see Enrollment
+     * @see GetCourseEnrollmentsQuery
+     */
+    @Override
+    public List<Enrollment> handle(GetCourseEnrollmentsQuery query) {
+        return enrollmentRepository.findAllByCourseId(query.courseId());
     }
 }

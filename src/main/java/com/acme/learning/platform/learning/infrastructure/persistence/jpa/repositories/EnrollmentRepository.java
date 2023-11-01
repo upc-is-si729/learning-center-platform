@@ -11,4 +11,5 @@ import java.util.Optional;
 @Repository
 public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
     List<Enrollment> findAllByAcmeStudentRecordId(AcmeStudentRecordId acmeStudentRecordId);
+    List<Enrollment> findAllByCourseId(Long courseId);
 }
