@@ -20,8 +20,15 @@ import org.springframework.web.bind.annotation.*;
  * Inbound service for the Enrollment aggregate.
  * <p>
  * This controller is responsible for handling requests related to the Enrollment aggregate.
+ * It uses the {@link EnrollmentCommandService} and {@link EnrollmentQueryService} to handle the commands and queries
+ * for enrollments.
+ * <ul>
+ *     <li>POST /api/v1/enrollments</li>
+ *     <li>POST /api/v1/enrollments/{enrollmentId}/confirmations</li>
+ *     <li>POST /api/v1/enrollments/{enrollmentId}/rejections</li>
+ *     <li>POST /api/v1/enrollments/{enrollmentId}/cancellations</li>
+ * </ul>
  * <p>
- *
  */
 @RestController
 @RequestMapping(value = "/api/v1/enrollments", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -40,6 +47,8 @@ public class EnrollmentsController {
      *
      * @param resource The request body containing the student record ID and the course ID.
      * @return The enrollment resource.
+     * @see RequestEnrollmentResource
+     * @see EnrollmentResource
      */
     @PostMapping
     public ResponseEntity<EnrollmentResource> requestEnrollment(@RequestBody RequestEnrollmentResource resource) {
@@ -65,8 +74,8 @@ public class EnrollmentsController {
      */
     @PostMapping("/{enrollmentId}/confirmations")
     public ResponseEntity<?> confirmEnrollment(@PathVariable Long enrollmentId) {
-        var command = new ConfirmEnrollmentCommand(enrollmentId);
-        var confirmedEnrollmentId = enrollmentCommandService.handle(command);
+        var confirmEnrollmentCommand = new ConfirmEnrollmentCommand(enrollmentId);
+        var confirmedEnrollmentId = enrollmentCommandService.handle(confirmEnrollmentCommand);
         return ResponseEntity.ok(confirmedEnrollmentId);
     }
 
@@ -78,8 +87,8 @@ public class EnrollmentsController {
      */
     @PostMapping("/{enrollmentId}/rejections")
     public ResponseEntity<?> rejectEnrollment(@PathVariable Long enrollmentId) {
-        var command = new RejectEnrollmentCommand(enrollmentId);
-        var rejectedEnrollmentId = enrollmentCommandService.handle(command);
+        var rejectEnrollmentCommand = new RejectEnrollmentCommand(enrollmentId);
+        var rejectedEnrollmentId = enrollmentCommandService.handle(rejectEnrollmentCommand);
         return ResponseEntity.ok(rejectedEnrollmentId);
     }
 
@@ -91,8 +100,8 @@ public class EnrollmentsController {
      */
     @PostMapping("/{enrollmentId}/cancellations")
     public ResponseEntity<?> cancelEnrollment(@PathVariable Long enrollmentId) {
-        var command = new CancelEnrollmentCommand(enrollmentId);
-        var cancelledEnrollmentId = enrollmentCommandService.handle(command);
+        var cancelEnrollmentCommand = new CancelEnrollmentCommand(enrollmentId);
+        var cancelledEnrollmentId = enrollmentCommandService.handle(cancelEnrollmentCommand);
         return ResponseEntity.ok(cancelledEnrollmentId);
     }
 }

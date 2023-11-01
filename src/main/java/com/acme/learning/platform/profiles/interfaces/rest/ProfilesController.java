@@ -13,6 +13,18 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * ProfilesController
+ *
+ * <p>Controller that handles the endpoints for profiles.
+ * It uses the {@link ProfileCommandService} and {@link ProfileQueryService} to handle the commands and queries
+ * for profiles.
+ * <ul>
+ *     <li>POST /api/v1/profiles</li>
+ *     <li>GET /api/v1/profiles/{profileId}</li>
+ * </ul>
+ * </p>
+ */
 @RestController
 @RequestMapping(value = "/api/v1/profiles", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Profiles", description = "Profile Management Endpoints")
@@ -25,6 +37,16 @@ public class ProfilesController {
         this.profileCommandService = profileCommandService;
     }
 
+    /**
+     * POST /api/v1/profiles
+     *
+     * <p>Endpoint that creates a profile</p>
+     *
+     * @param resource the resource with the information to create the profile
+     * @return the created profile
+     * @see CreateProfileResource
+     * @see ProfileResource
+     */
     @PostMapping
     public ResponseEntity<ProfileResource> createProfile(CreateProfileResource resource) {
 
@@ -47,6 +69,15 @@ public class ProfilesController {
 
     }
 
+    /**
+     * GET /api/v1/profiles/{profileId}
+     *
+     * <p>Endpoint that returns a profile</p>
+     *
+     * @param profileId the id of the profile to be returned
+     * @return the profile resource for the given id
+     * @see ProfileResource
+     */
     @GetMapping("/{profileId}")
     public ResponseEntity<ProfileResource> getProfileById(@PathVariable Long profileId) {
         var getProfileByIdQuery = new GetProfileByIdQuery(profileId);
