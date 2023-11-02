@@ -3,7 +3,6 @@ package com.acme.learning.platform.learning.domain.model.valueobjects;
 import com.acme.learning.platform.learning.domain.model.aggregates.Enrollment;
 import com.acme.learning.platform.learning.domain.model.entities.ProgressRecordItem;
 import com.acme.learning.platform.learning.domain.model.entities.Tutorial;
-import com.acme.learning.platform.learning.domain.model.valueobjects.LearningPath;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.OneToMany;
 
@@ -28,6 +27,7 @@ public class ProgressRecord {
     }
 
     public void initializeProgressRecord(Enrollment enrollment, LearningPath learningPath) {
+        if (learningPath.isEmpty()) return;
         Tutorial tutorial = learningPath.getFirstTutorialInLearningPath();
         ProgressRecordItem progressRecordItem = new ProgressRecordItem(enrollment, tutorial);
         progressRecordItems.add(progressRecordItem);

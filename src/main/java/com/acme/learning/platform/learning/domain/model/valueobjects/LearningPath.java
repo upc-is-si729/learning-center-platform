@@ -95,4 +95,8 @@ public class LearningPath {
         return learningPathItems.stream().filter(item -> item.getNextItem() == null)
                 .findFirst().orElse(null);
     }
+
+    public boolean isEmpty() {
+        return learningPathItems.isEmpty();
+    }
 }
