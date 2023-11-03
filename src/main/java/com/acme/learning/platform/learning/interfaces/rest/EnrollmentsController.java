@@ -7,10 +7,10 @@ import com.acme.learning.platform.learning.domain.model.queries.GetAllEnrollment
 import com.acme.learning.platform.learning.domain.model.queries.GetEnrollmentByIdQuery;
 import com.acme.learning.platform.learning.domain.services.EnrollmentCommandService;
 import com.acme.learning.platform.learning.domain.services.EnrollmentQueryService;
-import com.acme.learning.platform.learning.interfaces.rest.resources.RequestEnrollmentResource;
 import com.acme.learning.platform.learning.interfaces.rest.resources.EnrollmentResource;
-import com.acme.learning.platform.learning.interfaces.rest.transform.RequestEnrollmentCommandFromResourceAssembler;
+import com.acme.learning.platform.learning.interfaces.rest.resources.RequestEnrollmentResource;
 import com.acme.learning.platform.learning.interfaces.rest.transform.EnrollmentResourceFromEntityAssembler;
+import com.acme.learning.platform.learning.interfaces.rest.transform.RequestEnrollmentCommandFromResourceAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

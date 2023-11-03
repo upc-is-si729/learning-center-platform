@@ -1,9 +1,10 @@
 package com.acme.learning.platform.learning.application.internal.commandservices;
 
 import com.acme.learning.platform.learning.domain.exceptions.CourseNotFoundException;
+import com.acme.learning.platform.learning.domain.model.aggregates.Course;
 import com.acme.learning.platform.learning.domain.model.aggregates.Enrollment;
 import com.acme.learning.platform.learning.domain.model.commands.*;
-import com.acme.learning.platform.learning.domain.model.aggregates.Course;
+import com.acme.learning.platform.learning.domain.model.valueobjects.TutorialId;
 import com.acme.learning.platform.learning.domain.services.EnrollmentCommandService;
 import com.acme.learning.platform.learning.infrastructure.persistence.jpa.repositories.CourseRepository;
 import com.acme.learning.platform.learning.infrastructure.persistence.jpa.repositories.EnrollmentRepository;
@@ -112,7 +113,8 @@ public class EnrollmentCommandServiceImpl implements EnrollmentCommandService {
     @Override
     public Long handle(CompleteTutorialForEnrollmentCommand command) {
         enrollmentRepository.findById(command.enrollmentId()).map(enrollment -> {
-            enrollment.completeTutorial(command.tutorialId());
+            var tutorialId = new TutorialId(command.tutorialId());
+            enrollment.completeTutorial(tutorialId);
             enrollmentRepository.save(enrollment);
             return enrollment.getId();
         }).orElseThrow(() -> new RuntimeException("Enrollment not found"));

@@ -1,10 +1,10 @@
 package com.acme.learning.platform.learning.application.internal.eventhandlers;
 
 import com.acme.learning.platform.learning.domain.model.commands.UpdateStudentMetricsOnTutorialCompletedCommand;
+import com.acme.learning.platform.learning.domain.model.events.TutorialCompletedEvent;
 import com.acme.learning.platform.learning.domain.model.queries.GetEnrollmentByIdQuery;
 import com.acme.learning.platform.learning.domain.services.EnrollmentQueryService;
 import com.acme.learning.platform.learning.domain.services.StudentCommandService;
-import com.acme.learning.platform.learning.domain.model.events.TutorialCompletedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 

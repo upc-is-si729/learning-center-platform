@@ -2,11 +2,9 @@ package com.acme.learning.platform.learning.domain.model.entities;
 
 import com.acme.learning.platform.learning.domain.model.aggregates.Enrollment;
 import com.acme.learning.platform.learning.domain.model.valueobjects.ProgressStatus;
+import com.acme.learning.platform.learning.domain.model.valueobjects.TutorialId;
 import com.acme.learning.platform.shared.domain.model.entities.AuditableModel;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.time.LocalDate;
@@ -26,9 +24,8 @@ public class ProgressRecordItem extends AuditableModel {
     private Enrollment enrollment;
 
     @Getter
-    @ManyToOne
-    @JoinColumn(name = "tutorial_id")
-    private Tutorial tutorial;
+    @Embedded
+    private TutorialId tutorialId;
 
     private ProgressStatus status;
 
@@ -36,9 +33,9 @@ public class ProgressRecordItem extends AuditableModel {
 
     private Date completedAt;
 
-    public ProgressRecordItem(Enrollment enrollment, Tutorial tutorial) {
+    public ProgressRecordItem(Enrollment enrollment, TutorialId tutorialId) {
         this.enrollment = enrollment;
-        this.tutorial = tutorial;
+        this.tutorialId = tutorialId;
         this.status = ProgressStatus.NOT_STARTED;
     }
 

@@ -1,7 +1,7 @@
 package com.acme.learning.platform.learning.domain.model.aggregates;
 
-import com.acme.learning.platform.learning.domain.model.entities.Tutorial;
 import com.acme.learning.platform.learning.domain.model.valueobjects.LearningPath;
+import com.acme.learning.platform.learning.domain.model.valueobjects.TutorialId;
 import com.acme.learning.platform.shared.domain.model.entities.AuditableModel;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,23 +10,20 @@ import org.apache.logging.log4j.util.Strings;
 /**
  * Represents a course.
  */
+@Getter
 @Entity
 public class Course  extends AuditableModel {
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
     private String title;
 
-    @Getter
     private String description;
 
     /**
      * The learning path for this course.
      */
-    @Getter
     @Embedded
     private final LearningPath learningPath;
 
@@ -56,19 +53,19 @@ public class Course  extends AuditableModel {
 
     /**
      * Adds a tutorial to the learning path.
-     * @param tutorial The tutorial to add.
+     * @param tutorialId The tutorial to add.
      */
-    public void addTutorialToLearningPath(Tutorial tutorial) {
-        this.learningPath.addItem(this, tutorial);
+    public void addTutorialToLearningPath(TutorialId tutorialId) {
+        this.learningPath.addItem(this, tutorialId);
     }
 
     /**
      * Adds a tutorial to the learning path.
-     * @param tutorial The tutorial to add.
+     * @param tutorialId The tutorial to add.
      * @param nextTutorialId The id of the tutorial before which the new item should be added
      */
-    public void addTutorialToLearningPath(Tutorial tutorial, Long nextTutorialId) {
-        this.learningPath.addItem(this, tutorial, nextTutorialId);
+    public void addTutorialToLearningPath(TutorialId tutorialId, TutorialId nextTutorialId) {
+        this.learningPath.addItem(this, tutorialId, nextTutorialId);
     }
 
 

@@ -1,6 +1,7 @@
 package com.acme.learning.platform.learning.domain.model.events;
 
 import com.acme.learning.platform.learning.application.internal.eventhandlers.TutorialCompletedEventHandler;
+import com.acme.learning.platform.learning.domain.model.valueobjects.TutorialId;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
@@ -18,9 +19,9 @@ public final class TutorialCompletedEvent extends ApplicationEvent {
 
     private final Long enrollmentId;
 
-    private final Long tutorialId;
+    private final TutorialId tutorialId;
 
-    public TutorialCompletedEvent(Object source, Long enrollmentId, Long tutorialId) {
+    public TutorialCompletedEvent(Object source, Long enrollmentId, TutorialId tutorialId) {
         super(source);
         this.enrollmentId = enrollmentId;
         this.tutorialId = tutorialId;
