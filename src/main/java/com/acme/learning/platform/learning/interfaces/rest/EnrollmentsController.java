@@ -4,7 +4,9 @@ import com.acme.learning.platform.learning.domain.model.commands.CancelEnrollmen
 import com.acme.learning.platform.learning.domain.model.commands.ConfirmEnrollmentCommand;
 import com.acme.learning.platform.learning.domain.model.commands.RejectEnrollmentCommand;
 import com.acme.learning.platform.learning.domain.model.queries.GetAllEnrollmentsQuery;
+import com.acme.learning.platform.learning.domain.model.queries.GetEnrollmentByAcmeStudentRecordIdAndCourseIdQuery;
 import com.acme.learning.platform.learning.domain.model.queries.GetEnrollmentByIdQuery;
+import com.acme.learning.platform.learning.domain.model.valueobjects.AcmeStudentRecordId;
 import com.acme.learning.platform.learning.domain.services.EnrollmentCommandService;
 import com.acme.learning.platform.learning.domain.services.EnrollmentQueryService;
 import com.acme.learning.platform.learning.interfaces.rest.resources.EnrollmentResource;
@@ -59,8 +61,8 @@ public class EnrollmentsController {
         var command = RequestEnrollmentCommandFromResourceAssembler.toCommandFromResource(resource);
         var enrollmentId = enrollmentCommandService.handle(command);
         System.out.println("Enrollment ID: " + enrollmentId);
-        var getEnrollmentByIdQuery = new GetEnrollmentByIdQuery(enrollmentId);
-        var enrollment = enrollmentQueryService.handle(getEnrollmentByIdQuery);
+        var getEnrollmentByAcmeStudentRecordIdAndCourseIdQuery = new GetEnrollmentByAcmeStudentRecordIdAndCourseIdQuery(new AcmeStudentRecordId(resource.studentRecordId()), resource.courseId());
+        var enrollment = enrollmentQueryService.handle(getEnrollmentByAcmeStudentRecordIdAndCourseIdQuery);
         if (enrollment.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

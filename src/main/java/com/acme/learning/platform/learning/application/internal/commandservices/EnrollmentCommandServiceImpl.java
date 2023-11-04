@@ -50,7 +50,7 @@ public class EnrollmentCommandServiceImpl implements EnrollmentCommandService {
         studentRepository.findByAcmeStudentRecordId(command.studentRecordId()).map(student -> {
             Course course = courseRepository.findById(command.courseId()).orElseThrow(() -> new CourseNotFoundException(command.courseId()));
             Enrollment enrollment = new Enrollment(command.studentRecordId(), course);
-            enrollmentRepository.save(enrollment);
+            enrollment = enrollmentRepository.save(enrollment);
             return enrollment.getId();
         }).orElseThrow(() -> new RuntimeException("Student not found"));
         return 0L;
