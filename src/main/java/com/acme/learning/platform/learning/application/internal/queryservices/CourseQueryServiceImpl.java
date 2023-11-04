@@ -1,8 +1,10 @@
 package com.acme.learning.platform.learning.application.internal.queryservices;
 
 import com.acme.learning.platform.learning.domain.model.aggregates.Course;
+import com.acme.learning.platform.learning.domain.model.entities.LearningPathItem;
 import com.acme.learning.platform.learning.domain.model.queries.GetAllCoursesQuery;
 import com.acme.learning.platform.learning.domain.model.queries.GetCourseByIdQuery;
+import com.acme.learning.platform.learning.domain.model.queries.GetCourseLearningPathItemByCourseIdAndTutorialIdQuery;
 import com.acme.learning.platform.learning.domain.services.CourseQueryService;
 import com.acme.learning.platform.learning.infrastructure.persistence.jpa.repositories.CourseRepository;
 import org.springframework.stereotype.Service;
@@ -27,5 +29,10 @@ public class CourseQueryServiceImpl implements CourseQueryService {
     @Override
     public List<Course> handle(GetAllCoursesQuery query) {
         return courseRepository.findAll();
+    }
+
+    @Override
+    public Optional<LearningPathItem> handle(GetCourseLearningPathItemByCourseIdAndTutorialIdQuery query) {
+        return courseRepository.findById(query.courseId()).map(course -> course.getLearningPath().getLearningPathItemWithTutorialId(query.tutorialId()));
     }
 }

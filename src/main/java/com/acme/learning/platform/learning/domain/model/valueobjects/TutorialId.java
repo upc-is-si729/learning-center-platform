@@ -17,4 +17,5 @@ public record TutorialId(Long tutorialId) {
         public TutorialId() {
             this(0L);
         }
+
 }

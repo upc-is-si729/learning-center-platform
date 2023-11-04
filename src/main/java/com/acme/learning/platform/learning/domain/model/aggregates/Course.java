@@ -55,7 +55,8 @@ public class Course  extends AuditableModel {
      * Adds a tutorial to the learning path.
      * @param tutorialId The tutorial to add.
      */
-    public void addTutorialToLearningPath(TutorialId tutorialId) {
+    public void addTutorialToLearningPath(Long tutorialId) {
+        System.out.println("Adding tutorial to learning path");
         this.learningPath.addItem(this, tutorialId);
     }
 
@@ -64,7 +65,7 @@ public class Course  extends AuditableModel {
      * @param tutorialId The tutorial to add.
      * @param nextTutorialId The id of the tutorial before which the new item should be added
      */
-    public void addTutorialToLearningPath(TutorialId tutorialId, TutorialId nextTutorialId) {
+    public void addTutorialToLearningPath(Long tutorialId, Long nextTutorialId) {
         this.learningPath.addItem(this, tutorialId, nextTutorialId);
     }
 

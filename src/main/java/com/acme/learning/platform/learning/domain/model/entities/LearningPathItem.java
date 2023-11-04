@@ -4,7 +4,9 @@ import com.acme.learning.platform.learning.domain.model.aggregates.Course;
 import com.acme.learning.platform.learning.domain.model.valueobjects.TutorialId;
 import com.acme.learning.platform.shared.domain.model.entities.AuditableModel;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Represents an item in the learning path.
@@ -18,23 +20,24 @@ public class LearningPathItem extends AuditableModel {
 
     @ManyToOne
     @JoinColumn(name = "course_id")
+    @NotNull
     private Course course;
 
-    @Embedded
-    TutorialId tutorialId;
+    @NotNull
+    private Long tutorialId;
 
     @ManyToOne
     @JoinColumn(name = "next_item_id")
     private LearningPathItem nextItem;
 
-    public LearningPathItem(Course course, TutorialId tutorialId, LearningPathItem nextItem) {
+
+    public LearningPathItem(Course course, Long tutorialId, LearningPathItem nextItem) {
         this.course = course;
         this.tutorialId = tutorialId;
         this.nextItem = nextItem;
     }
-
     public LearningPathItem() {
-        this.tutorialId = new TutorialId();
+        this.tutorialId = 0L;
         this.nextItem = null;
     }
 

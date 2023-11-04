@@ -2,6 +2,7 @@ package com.acme.learning.platform.learning.domain.model.valueobjects;
 
 import com.acme.learning.platform.learning.domain.model.aggregates.Course;
 import com.acme.learning.platform.learning.domain.model.entities.LearningPathItem;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.OneToMany;
 
@@ -20,7 +21,7 @@ import java.util.List;
 @Embeddable
 public class LearningPath {
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<LearningPathItem> learningPathItems;
 
     public LearningPath() {
@@ -34,9 +35,11 @@ public class LearningPath {
      * @param tutorialId The tutorial to add
      * @param nextItem The id of the item before which the new item should be added
      */
-    public void addItem(Course course, TutorialId tutorialId, LearningPathItem nextItem) {
+    public void addItem(Course course, Long tutorialId, LearningPathItem nextItem) {
         // Add the new item before the next item
+        System.out.println("Adding item to learning path");
         LearningPathItem learningPathItem = new LearningPathItem(course, tutorialId, nextItem);
+        System.out.println("tutorial Id " + learningPathItem.getTutorialId());
         learningPathItems.add(learningPathItem);
     }
 
@@ -45,10 +48,19 @@ public class LearningPath {
      * @param course The course to add
      * @param tutorialId The tutorial to add
      */
-    public void addItem(Course course, TutorialId tutorialId) {
-        LearningPathItem originalLastItem = getLastItemInLearningPath();
+    public void addItem(Course course, Long tutorialId) {
+        System.out.println("Adding item to learning path");
         LearningPathItem learningPathItem = new LearningPathItem(course, tutorialId, null);
+        LearningPathItem originalLastItem = null;
+        if (!learningPathItems.isEmpty()) {
+            originalLastItem = getLastItemInLearningPath();
+        } else {
+            System.out.println("Learning path is empty");
+        }
+
         learningPathItems.add(learningPathItem);
+        System.out.println("tutorial Id " + learningPathItem.getTutorialId());
+        System.out.println("Learning path item added");
         if (originalLastItem != null) originalLastItem.updateNextItem(learningPathItem);
     }
 
@@ -58,20 +70,16 @@ public class LearningPath {
      * @param tutorialId The tutorial to add
      * @param nextTutorialId The id of the tutorial before which the new item should be added
      */
-    public void addItem(Course course, TutorialId tutorialId, TutorialId nextTutorialId) {
+    public void addItem(Course course, Long tutorialId, Long nextTutorialId) {
         LearningPathItem nextItem = getLearningPathItemWithTutorialId(nextTutorialId);
         addItem(course, tutorialId, nextItem);
     }
 
-    public TutorialId getFirstTutorialIdInLearningPath() {
+    public Long getFirstTutorialIdInLearningPath() {
         return learningPathItems.get(0).getTutorialId();
     }
 
-    public TutorialId getFirstTutorialInLearningPath() {
-        return learningPathItems.get(0).getTutorialId();
-    }
-
-    public TutorialId getNextTutorialInLearningPath(TutorialId currentTutorialId) {
+    public Long getNextTutorialInLearningPath(Long currentTutorialId) {
         LearningPathItem item = getLearningPathItemWithTutorialId(currentTutorialId);
         return item != null ? item.getTutorialId() : null;
     }
@@ -81,12 +89,12 @@ public class LearningPath {
                 .findFirst().orElse(null);
     }
 
-    private LearningPathItem getLearningPathItemWithTutorialId(TutorialId tutorialId) {
+    public LearningPathItem getLearningPathItemWithTutorialId(Long tutorialId) {
         return learningPathItems.stream().filter(learningPathItem -> learningPathItem.getTutorialId().equals(tutorialId))
                 .findFirst().orElse(null);
     }
 
-    public boolean isLastTutorialInLearningPath(TutorialId currentTutorialId) {
+    public boolean isLastTutorialInLearningPath(Long currentTutorialId) {
         return getNextTutorialInLearningPath(currentTutorialId) == null;
     }
 

@@ -123,7 +123,7 @@ public class Enrollment extends AbstractAggregateRoot<Enrollment> {
      *                   The tutorial must be part of the learning path of the course.
      *                   Otherwise, an exception will be thrown.
      */
-    public void completeTutorial(TutorialId tutorialId) {
+    public void completeTutorial(Long tutorialId) {
         progressRecord.completeTutorial(tutorialId, course.getLearningPath());
         // Publish a Tutorial Completed Event
         this.registerEvent(new TutorialCompletedEvent(this, this.getId(), tutorialId));

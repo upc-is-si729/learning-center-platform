@@ -1,6 +1,7 @@
 package com.acme.learning.platform.learning.application.internal.commandservices;
 
 import com.acme.learning.platform.learning.domain.model.aggregates.Course;
+import com.acme.learning.platform.learning.domain.model.commands.AddTutorialToCourseLearningPathCommand;
 import com.acme.learning.platform.learning.domain.model.commands.CreateCourseCommand;
 import com.acme.learning.platform.learning.domain.model.commands.DeleteCourseCommand;
 import com.acme.learning.platform.learning.domain.model.commands.UpdateCourseCommand;
@@ -45,5 +46,19 @@ public class CourseCommandServiceImpl implements CourseCommandService {
             throw new IllegalArgumentException("Course does not exist");
         }
         courseRepository.deleteById(command.courseId());
+    }
+
+    @Override
+    public void handle(AddTutorialToCourseLearningPathCommand command) {
+        if (!courseRepository.existsById(command.courseId())) {
+            throw new IllegalArgumentException("Course does not exist");
+        }
+        courseRepository.findById(command.courseId()).map(course -> {
+            course.addTutorialToLearningPath(command.tutorialId());
+            courseRepository.save(course);
+            System.out.println("Tutorial added to learning path");
+            return course;
+        });
+
     }
 }

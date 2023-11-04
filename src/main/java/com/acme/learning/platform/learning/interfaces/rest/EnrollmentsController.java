@@ -11,6 +11,7 @@ import com.acme.learning.platform.learning.interfaces.rest.resources.EnrollmentR
 import com.acme.learning.platform.learning.interfaces.rest.resources.RequestEnrollmentResource;
 import com.acme.learning.platform.learning.interfaces.rest.transform.EnrollmentResourceFromEntityAssembler;
 import com.acme.learning.platform.learning.interfaces.rest.transform.RequestEnrollmentCommandFromResourceAssembler;
+import com.acme.learning.platform.shared.interfaces.rest.resources.MessageResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -57,13 +58,11 @@ public class EnrollmentsController {
     public ResponseEntity<EnrollmentResource> requestEnrollment(@RequestBody RequestEnrollmentResource resource) {
         var command = RequestEnrollmentCommandFromResourceAssembler.toCommandFromResource(resource);
         var enrollmentId = enrollmentCommandService.handle(command);
-        if (enrollmentId == 0L) {
-            return ResponseEntity.badRequest().build();
-        }
+        System.out.println("Enrollment ID: " + enrollmentId);
         var getEnrollmentByIdQuery = new GetEnrollmentByIdQuery(enrollmentId);
         var enrollment = enrollmentQueryService.handle(getEnrollmentByIdQuery);
         if (enrollment.isEmpty()) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.notFound().build();
         }
         var enrollmentResource = EnrollmentResourceFromEntityAssembler.toResourceFromEntity(enrollment.get());
         return new ResponseEntity<>(enrollmentResource, HttpStatus.CREATED);
@@ -73,39 +72,43 @@ public class EnrollmentsController {
      * Handles a request to confirm an enrollment.
      *
      * @param enrollmentId The enrollment ID.
-     * @return The enrollment ID.
+     * @return MessageResource with The enrollment ID.
+     * @see MessageResource
      */
     @PostMapping("/{enrollmentId}/confirmations")
-    public ResponseEntity<?> confirmEnrollment(@PathVariable Long enrollmentId) {
+    public ResponseEntity<MessageResource> confirmEnrollment(@PathVariable Long enrollmentId) {
         var confirmEnrollmentCommand = new ConfirmEnrollmentCommand(enrollmentId);
-        var confirmedEnrollmentId = enrollmentCommandService.handle(confirmEnrollmentCommand);
-        return ResponseEntity.ok(confirmedEnrollmentId);
+        enrollmentCommandService.handle(confirmEnrollmentCommand);
+        return ResponseEntity.ok(new MessageResource("Confirmed Enrollment ID: " + enrollmentId));
     }
 
     /**
      * Handles a request to reject an enrollment.
      *
      * @param enrollmentId The enrollment ID.
-     * @return The enrollment ID.
+     * @return MessageResource with the enrollment ID.
+     * @see MessageResource
      */
     @PostMapping("/{enrollmentId}/rejections")
-    public ResponseEntity<?> rejectEnrollment(@PathVariable Long enrollmentId) {
+    public ResponseEntity<MessageResource> rejectEnrollment(@PathVariable Long enrollmentId) {
         var rejectEnrollmentCommand = new RejectEnrollmentCommand(enrollmentId);
-        var rejectedEnrollmentId = enrollmentCommandService.handle(rejectEnrollmentCommand);
-        return ResponseEntity.ok(rejectedEnrollmentId);
+        enrollmentCommandService.handle(rejectEnrollmentCommand);
+        return ResponseEntity.ok(new MessageResource("Rejected Enrollment ID: " + enrollmentId));
     }
 
     /**
      * Handles a request to cancel an enrollment.
      *
      * @param enrollmentId The enrollment ID.
-     * @return The enrollment ID.
+     * @return MessageResource with the enrollment ID.
+     * @see MessageResource
+     *
      */
     @PostMapping("/{enrollmentId}/cancellations")
-    public ResponseEntity<?> cancelEnrollment(@PathVariable Long enrollmentId) {
+    public ResponseEntity<MessageResource> cancelEnrollment(@PathVariable Long enrollmentId) {
         var cancelEnrollmentCommand = new CancelEnrollmentCommand(enrollmentId);
-        var cancelledEnrollmentId = enrollmentCommandService.handle(cancelEnrollmentCommand);
-        return ResponseEntity.ok(cancelledEnrollmentId);
+        enrollmentCommandService.handle(cancelEnrollmentCommand);
+        return ResponseEntity.ok(new MessageResource("Cancelled Enrollment ID: "+ enrollmentId));
     }
 
     /**

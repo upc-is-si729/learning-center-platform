@@ -13,19 +13,19 @@ import java.util.Date;
 /**
  * Represents an item in the progress record.
  */
+@Getter
 @Entity
 public class ProgressRecordItem extends AuditableModel {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
     @ManyToOne
     @JoinColumn(name = "enrollment_id")
     private Enrollment enrollment;
 
     @Getter
-    @Embedded
-    private TutorialId tutorialId;
+    private Long tutorialId;
 
     private ProgressStatus status;
 
@@ -33,7 +33,8 @@ public class ProgressRecordItem extends AuditableModel {
 
     private Date completedAt;
 
-    public ProgressRecordItem(Enrollment enrollment, TutorialId tutorialId) {
+
+    public ProgressRecordItem(Enrollment enrollment, Long tutorialId) {
         this.enrollment = enrollment;
         this.tutorialId = tutorialId;
         this.status = ProgressStatus.NOT_STARTED;

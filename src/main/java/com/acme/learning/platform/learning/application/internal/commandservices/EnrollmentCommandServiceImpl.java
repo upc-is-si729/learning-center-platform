@@ -67,7 +67,7 @@ public class EnrollmentCommandServiceImpl implements EnrollmentCommandService {
         enrollmentRepository.findById(command.enrollmentId()).map(enrollment -> {
             enrollment.confirm();
             enrollmentRepository.save(enrollment);
-            return enrollment.getId();
+            return command.enrollmentId();
         }).orElseThrow(() -> new RuntimeException("Enrollment not found"));
         return null;
     }
@@ -113,8 +113,7 @@ public class EnrollmentCommandServiceImpl implements EnrollmentCommandService {
     @Override
     public Long handle(CompleteTutorialForEnrollmentCommand command) {
         enrollmentRepository.findById(command.enrollmentId()).map(enrollment -> {
-            var tutorialId = new TutorialId(command.tutorialId());
-            enrollment.completeTutorial(tutorialId);
+            enrollment.completeTutorial(command.tutorialId());
             enrollmentRepository.save(enrollment);
             return enrollment.getId();
         }).orElseThrow(() -> new RuntimeException("Enrollment not found"));
