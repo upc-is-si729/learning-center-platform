@@ -1,7 +1,7 @@
 package com.acme.learning.platform.iam.domain.model.valueobjects;
 
 public enum Roles {
-    ROLES_USER,
-    ROLES_ADMIN,
-    ROLES_INSTRUCTOR
+    ROLE_USER,
+    ROLE_ADMIN,
+    ROLE_INSTRUCTOR
 }
