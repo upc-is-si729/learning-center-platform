@@ -2,7 +2,6 @@ package com.acme.learning.platform.learning.domain.model.entities;
 
 import com.acme.learning.platform.learning.domain.model.aggregates.Enrollment;
 import com.acme.learning.platform.learning.domain.model.valueobjects.ProgressStatus;
-import com.acme.learning.platform.learning.domain.model.valueobjects.TutorialId;
 import com.acme.learning.platform.shared.domain.model.entities.AuditableModel;
 import jakarta.persistence.*;
 import lombok.Getter;

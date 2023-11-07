@@ -4,7 +4,6 @@ import com.acme.learning.platform.learning.domain.model.events.TutorialCompleted
 import com.acme.learning.platform.learning.domain.model.valueobjects.AcmeStudentRecordId;
 import com.acme.learning.platform.learning.domain.model.valueobjects.EnrollmentStatus;
 import com.acme.learning.platform.learning.domain.model.valueobjects.ProgressRecord;
-import com.acme.learning.platform.learning.domain.model.valueobjects.TutorialId;
 import jakarta.persistence.*;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

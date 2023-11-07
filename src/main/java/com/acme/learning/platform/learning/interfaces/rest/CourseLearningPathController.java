@@ -2,7 +2,6 @@ package com.acme.learning.platform.learning.interfaces.rest;
 
 import com.acme.learning.platform.learning.domain.model.commands.AddTutorialToCourseLearningPathCommand;
 import com.acme.learning.platform.learning.domain.model.queries.GetCourseLearningPathItemByCourseIdAndTutorialIdQuery;
-import com.acme.learning.platform.learning.domain.model.valueobjects.TutorialId;
 import com.acme.learning.platform.learning.domain.services.CourseCommandService;
 import com.acme.learning.platform.learning.domain.services.CourseQueryService;
 import com.acme.learning.platform.learning.interfaces.rest.resources.LearningPathItemResource;

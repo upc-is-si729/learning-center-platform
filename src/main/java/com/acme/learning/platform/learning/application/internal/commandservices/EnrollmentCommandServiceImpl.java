@@ -4,7 +4,6 @@ import com.acme.learning.platform.learning.domain.exceptions.CourseNotFoundExcep
 import com.acme.learning.platform.learning.domain.model.aggregates.Course;
 import com.acme.learning.platform.learning.domain.model.aggregates.Enrollment;
 import com.acme.learning.platform.learning.domain.model.commands.*;
-import com.acme.learning.platform.learning.domain.model.valueobjects.TutorialId;
 import com.acme.learning.platform.learning.domain.services.EnrollmentCommandService;
 import com.acme.learning.platform.learning.infrastructure.persistence.jpa.repositories.CourseRepository;
 import com.acme.learning.platform.learning.infrastructure.persistence.jpa.repositories.EnrollmentRepository;

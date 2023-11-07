@@ -1,12 +1,10 @@
 package com.acme.learning.platform.learning.domain.model.entities;
 
 import com.acme.learning.platform.learning.domain.model.aggregates.Course;
-import com.acme.learning.platform.learning.domain.model.valueobjects.TutorialId;
 import com.acme.learning.platform.shared.domain.model.entities.AuditableModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Represents an item in the learning path.

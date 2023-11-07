@@ -5,7 +5,6 @@ import com.acme.learning.platform.learning.domain.model.commands.ConfirmEnrollme
 import com.acme.learning.platform.learning.domain.model.commands.RejectEnrollmentCommand;
 import com.acme.learning.platform.learning.domain.model.queries.GetAllEnrollmentsQuery;
 import com.acme.learning.platform.learning.domain.model.queries.GetEnrollmentByAcmeStudentRecordIdAndCourseIdQuery;
-import com.acme.learning.platform.learning.domain.model.queries.GetEnrollmentByIdQuery;
 import com.acme.learning.platform.learning.domain.model.valueobjects.AcmeStudentRecordId;
 import com.acme.learning.platform.learning.domain.services.EnrollmentCommandService;
 import com.acme.learning.platform.learning.domain.services.EnrollmentQueryService;

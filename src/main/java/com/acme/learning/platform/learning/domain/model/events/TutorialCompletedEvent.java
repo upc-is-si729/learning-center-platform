@@ -1,7 +1,6 @@
 package com.acme.learning.platform.learning.domain.model.events;
 
 import com.acme.learning.platform.learning.application.internal.eventhandlers.TutorialCompletedEventHandler;
-import com.acme.learning.platform.learning.domain.model.valueobjects.TutorialId;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
