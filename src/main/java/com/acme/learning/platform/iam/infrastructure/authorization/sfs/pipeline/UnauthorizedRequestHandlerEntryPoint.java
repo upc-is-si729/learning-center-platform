@@ -1,4 +1,4 @@
-package com.acme.learning.platform.iam.infrastructure.sfs.pipeline;
+package com.acme.learning.platform.iam.infrastructure.authorization.sfs.pipeline;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,7 +1,7 @@
-package com.acme.learning.platform.iam.infrastructure.sfs.configuration;
+package com.acme.learning.platform.iam.infrastructure.authorization.sfs.configuration;
 
 import com.acme.learning.platform.iam.infrastructure.hashing.bcrypt.BCryptHashingService;
-import com.acme.learning.platform.iam.infrastructure.sfs.pipeline.BearerAuthorizationRequestFilter;
+import com.acme.learning.platform.iam.infrastructure.authorization.sfs.pipeline.BearerAuthorizationRequestFilter;
 import com.acme.learning.platform.iam.infrastructure.tokens.jwt.BearerTokenService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -51,7 +51,6 @@ public class WebSecurityConfiguration {
      * This method creates the authentication manager.
      * @param authenticationConfiguration The authentication configuration
      * @return The authentication manager
-     * @throws Exception
      */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -85,7 +84,6 @@ public class WebSecurityConfiguration {
      *
      * @param http The http security
      * @return The security filter chain
-     * @throws Exception
      */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

@@ -1,4 +1,4 @@
-package com.acme.learning.platform.iam.infrastructure.sfs.model;
+package com.acme.learning.platform.iam.infrastructure.authorization.sfs.model;
 
 import com.acme.learning.platform.iam.domain.model.aggregates.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;

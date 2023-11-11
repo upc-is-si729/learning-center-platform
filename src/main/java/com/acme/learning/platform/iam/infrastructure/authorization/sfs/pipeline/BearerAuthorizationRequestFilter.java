@@ -1,6 +1,6 @@
-package com.acme.learning.platform.iam.infrastructure.sfs.pipeline;
+package com.acme.learning.platform.iam.infrastructure.authorization.sfs.pipeline;
 
-import com.acme.learning.platform.iam.infrastructure.sfs.model.UsernamePasswordAuthenticationTokenBuilder;
+import com.acme.learning.platform.iam.infrastructure.authorization.sfs.model.UsernamePasswordAuthenticationTokenBuilder;
 import com.acme.learning.platform.iam.infrastructure.tokens.jwt.BearerTokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
