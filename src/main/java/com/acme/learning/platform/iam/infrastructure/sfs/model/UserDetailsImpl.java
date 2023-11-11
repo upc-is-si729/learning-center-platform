@@ -1,4 +1,4 @@
-package com.acme.learning.platform.iam.infrastructure.sc.model;
+package com.acme.learning.platform.iam.infrastructure.sfs.model;
 
 import com.acme.learning.platform.iam.domain.model.aggregates.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,7 +26,7 @@ public class UserDetailsImpl implements UserDetails {
     private final boolean accountNonLocked;
     private final boolean credentialsNonExpired;
     private final boolean enabled;
-    private Collection<? extends GrantedAuthority> authorities;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     public UserDetailsImpl(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         this.username = username;

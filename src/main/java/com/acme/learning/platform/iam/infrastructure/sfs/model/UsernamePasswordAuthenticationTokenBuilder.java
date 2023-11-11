@@ -1,4 +1,4 @@
-package com.acme.learning.platform.iam.infrastructure.sc.model;
+package com.acme.learning.platform.iam.infrastructure.sfs.model;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

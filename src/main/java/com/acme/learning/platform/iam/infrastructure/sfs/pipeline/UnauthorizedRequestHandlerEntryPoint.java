@@ -1,4 +1,4 @@
-package com.acme.learning.platform.iam.infrastructure.sc.pipeline;
+package com.acme.learning.platform.iam.infrastructure.sfs.pipeline;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,8 +31,6 @@ public class UnauthorizedRequestHandlerEntryPoint implements AuthenticationEntry
      * @param request The request that caused the exception
      * @param response The response that will be sent to the client
      * @param authenticationException The exception that caused the invocation
-     * @throws IOException
-     * @throws ServletException
      */
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authenticationException) throws IOException, ServletException {

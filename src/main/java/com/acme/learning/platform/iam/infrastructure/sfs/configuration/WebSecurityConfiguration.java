@@ -1,7 +1,7 @@
-package com.acme.learning.platform.iam.infrastructure.sc.configuration;
+package com.acme.learning.platform.iam.infrastructure.sfs.configuration;
 
 import com.acme.learning.platform.iam.infrastructure.hashing.bcrypt.BCryptHashingService;
-import com.acme.learning.platform.iam.infrastructure.sc.pipeline.BearerAuthorizationRequestFilter;
+import com.acme.learning.platform.iam.infrastructure.sfs.pipeline.BearerAuthorizationRequestFilter;
 import com.acme.learning.platform.iam.infrastructure.tokens.jwt.BearerTokenService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +27,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * </p>
  */
 @Configuration
-@EnableMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity
 public class WebSecurityConfiguration {
 
     private final UserDetailsService userDetailsService;

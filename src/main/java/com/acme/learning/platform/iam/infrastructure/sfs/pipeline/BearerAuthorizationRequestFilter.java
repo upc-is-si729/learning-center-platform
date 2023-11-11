@@ -1,6 +1,6 @@
-package com.acme.learning.platform.iam.infrastructure.sc.pipeline;
+package com.acme.learning.platform.iam.infrastructure.sfs.pipeline;
 
-import com.acme.learning.platform.iam.infrastructure.sc.model.UsernamePasswordAuthenticationTokenBuilder;
+import com.acme.learning.platform.iam.infrastructure.sfs.model.UsernamePasswordAuthenticationTokenBuilder;
 import com.acme.learning.platform.iam.infrastructure.tokens.jwt.BearerTokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;

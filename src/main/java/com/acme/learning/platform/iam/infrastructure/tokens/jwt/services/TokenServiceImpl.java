@@ -1,6 +1,5 @@
 package com.acme.learning.platform.iam.infrastructure.tokens.jwt.services;
 
-import com.acme.learning.platform.iam.application.internal.outboundservices.tokens.TokenService;
 import com.acme.learning.platform.iam.infrastructure.tokens.jwt.BearerTokenService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -28,10 +27,10 @@ import java.util.function.Function;
 public class TokenServiceImpl implements BearerTokenService {
     private final Logger LOGGER = LoggerFactory.getLogger(TokenServiceImpl.class);
 
-    private static String AUTHORIZATION_PARAMETER_NAME = "Authorization";
-    private static String BEARER_TOKEN_PREFIX = "Bearer ";
+    private static final String AUTHORIZATION_PARAMETER_NAME = "Authorization";
+    private static final String BEARER_TOKEN_PREFIX = "Bearer ";
 
-    private static int TOKEN_BEGIN_INDEX = 7;
+    private static final int TOKEN_BEGIN_INDEX = 7;
 
 
     @Value("${authorization.jwt.secret}")
