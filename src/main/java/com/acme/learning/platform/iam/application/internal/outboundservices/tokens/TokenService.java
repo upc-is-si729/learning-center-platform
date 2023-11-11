@@ -1,5 +1,6 @@
 package com.acme.learning.platform.iam.application.internal.outboundservices.tokens;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.Authentication;
 
 /**
