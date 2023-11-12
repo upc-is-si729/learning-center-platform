@@ -62,6 +62,10 @@ public class UserCommandServiceImpl implements UserCommandService {
      */
     @Override
     public Optional<User> handle(SignUpCommand command) {
-        return Optional.empty();
+        if (userRepository.existsByUsername(command.username()))
+            throw new RuntimeException("Username already exists");
+        var user = new User(command.username(), hashingService.encode(command.password()));
+        userRepository.save(user);
+        return userRepository.findByUsername(command.username());
     }
 }
