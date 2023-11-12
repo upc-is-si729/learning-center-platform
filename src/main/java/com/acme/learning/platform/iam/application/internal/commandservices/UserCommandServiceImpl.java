@@ -12,6 +12,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * User command service implementation
+ * <p>
+ *     This class implements the {@link UserCommandService} interface and provides the implementation for the
+ *     {@link SignInCommand} and {@link SignUpCommand} commands.
+ * </p>
+ */
 @Service
 public class UserCommandServiceImpl implements UserCommandService {
 
@@ -25,6 +32,14 @@ public class UserCommandServiceImpl implements UserCommandService {
         this.tokenService = tokenService;
     }
 
+    /**
+     * Handle the sign-in command
+     * <p>
+     *     This method handles the {@link SignInCommand} command and returns the user and the token.
+     * </p>
+     * @param command the sign-in command containing the username and password
+     * @return the user matching the username and the generated token
+     */
     @Override
     public Optional<ImmutablePair<User, String>> handle(SignInCommand command) {
         var user = userRepository.findByUsername(command.username());
@@ -36,6 +51,14 @@ public class UserCommandServiceImpl implements UserCommandService {
         return Optional.of(ImmutablePair.of(user.get(), token));
     }
 
+    /**
+     * Handle the sign-up command
+     * <p>
+     *     This method handles the {@link SignUpCommand} command and returns the user.
+     * </p>
+     * @param command the sign-up command containing the username and password
+     * @return the created user
+     */
     @Override
     public Optional<User> handle(SignUpCommand command) {
         return Optional.empty();
