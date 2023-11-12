@@ -1,20 +1,16 @@
 package com.acme.learning.platform.iam.application.internal.outboundservices.tokens;
 
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.security.core.Authentication;
-
 /**
  * TokenService interface
  * This interface is used to generate and validate tokens
  */
 public interface TokenService {
     /**
-     * Generate a token from an authentication object
-     * @param authentication the authentication object
-     * @return String the generated token
-     *
+     * Generate a token for a given username
+     * @param username the username
+     * @return String the token
      */
-    String generateToken(Authentication authentication);
+    String generateToken(String username);
 
     /**
      * Extract the username from a token

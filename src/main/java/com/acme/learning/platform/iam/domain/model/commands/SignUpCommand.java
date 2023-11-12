@@ -1,4 +1,4 @@
 package com.acme.learning.platform.iam.domain.model.commands;
 
-public record SignUpCommand() {
+public record SignUpCommand(String username, String password) {
 }

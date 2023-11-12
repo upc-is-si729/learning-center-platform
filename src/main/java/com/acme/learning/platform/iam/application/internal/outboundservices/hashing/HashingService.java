@@ -2,5 +2,6 @@ package com.acme.learning.platform.iam.application.internal.outboundservices.has
 
 public interface HashingService {
     String encode(CharSequence rawPassword);
+    boolean matches(CharSequence rawPassword, String encodedPassword);
 
 }
