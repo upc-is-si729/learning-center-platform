@@ -1,4 +1,6 @@
 package com.acme.learning.platform.iam.interfaces.rest.resources;
 
-public record UserResource(Long id, String username) {
+import java.util.List;
+
+public record UserResource(Long id, String username, List<String> roles) {
 }

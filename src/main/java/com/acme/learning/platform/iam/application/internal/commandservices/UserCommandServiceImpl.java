@@ -5,12 +5,14 @@ import com.acme.learning.platform.iam.application.internal.outboundservices.toke
 import com.acme.learning.platform.iam.domain.model.aggregates.User;
 import com.acme.learning.platform.iam.domain.model.commands.SignInCommand;
 import com.acme.learning.platform.iam.domain.model.commands.SignUpCommand;
+import com.acme.learning.platform.iam.domain.model.entities.Role;
 import com.acme.learning.platform.iam.domain.services.UserCommandService;
 import com.acme.learning.platform.iam.infrastructure.persistence.jpa.repositories.UserRepository;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * User command service implementation
@@ -64,7 +66,7 @@ public class UserCommandServiceImpl implements UserCommandService {
     public Optional<User> handle(SignUpCommand command) {
         if (userRepository.existsByUsername(command.username()))
             throw new RuntimeException("Username already exists");
-        var user = new User(command.username(), hashingService.encode(command.password()));
+        var user = new User(command.username(), hashingService.encode(command.password()), command.roles());
         userRepository.save(user);
         return userRepository.findByUsername(command.username());
     }

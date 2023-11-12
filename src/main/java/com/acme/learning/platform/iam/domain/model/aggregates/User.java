@@ -13,8 +13,15 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+/**
+ * User aggregate root
+ * This class represents the aggregate root for the User entity.
+ *
+ * @see AbstractAggregateRoot
+ */
 @Getter
 @Setter
 @Entity
@@ -33,7 +40,7 @@ public class User extends AbstractAggregateRoot<User> {
     @Size(max = 120)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(	name = "user_roles",
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -48,15 +55,32 @@ public class User extends AbstractAggregateRoot<User> {
         this.roles = new HashSet<>();
     }
 
-    public User(Long id, String username, String password, Set<Role> roles) {
+    public User(String username, String password, List<Role> roles) {
         this(username, password);
-        this.id = id;
-        this.roles = roles;
+        addRoles(roles);
     }
+
+    /**
+     * Add a role to the user
+     * @param role the role to add
+     * @return the user with the added role
+     */
     public User addRole(Role role) {
         this.roles.add(role);
         return this;
     }
+
+    /**
+     * Add a list of roles to the user
+     * @param roles the list of roles to add
+     * @return the user with the added roles
+     */
+    public User addRoles(List<Role> roles) {
+        var validatedRoleSet = Role.validateRoleSet(roles);
+        this.roles.addAll(validatedRoleSet);
+        return this;
+    }
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private Date createdAt;
