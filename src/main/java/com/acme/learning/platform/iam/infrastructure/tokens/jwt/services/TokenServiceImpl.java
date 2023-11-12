@@ -1,8 +1,7 @@
 package com.acme.learning.platform.iam.infrastructure.tokens.jwt.services;
 
 import com.acme.learning.platform.iam.infrastructure.tokens.jwt.BearerTokenService;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.time.DateUtils;
@@ -94,6 +93,21 @@ public class TokenServiceImpl implements BearerTokenService {
      */
     @Override
     public boolean validateToken(String token) {
+        try {
+            Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token);
+            LOGGER.info("Token is valid");
+            return true;
+        }  catch (SignatureException e) {
+            LOGGER.error("Invalid JSON Web Token Signature: {}", e.getMessage());
+        } catch (MalformedJwtException e) {
+            LOGGER.error("Invalid JSON Web Token: {}", e.getMessage());
+        } catch (ExpiredJwtException e) {
+            LOGGER.error("JSON Web Token is expired: {}", e.getMessage());
+        } catch (UnsupportedJwtException e) {
+            LOGGER.error("JSON Web Token is unsupported: {}", e.getMessage());
+        } catch (IllegalArgumentException e) {
+            LOGGER.error("JSON Web Token claims string is empty: {}", e.getMessage());
+        }
         return false;
     }
 
