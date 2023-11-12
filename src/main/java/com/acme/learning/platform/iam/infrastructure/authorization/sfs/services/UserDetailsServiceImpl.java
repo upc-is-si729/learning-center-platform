@@ -1,7 +1,7 @@
 package com.acme.learning.platform.iam.infrastructure.authorization.sfs.services;
 
-import com.acme.learning.platform.iam.infrastructure.persistence.jpa.repositories.UserRepository;
 import com.acme.learning.platform.iam.infrastructure.authorization.sfs.model.UserDetailsImpl;
+import com.acme.learning.platform.iam.infrastructure.persistence.jpa.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

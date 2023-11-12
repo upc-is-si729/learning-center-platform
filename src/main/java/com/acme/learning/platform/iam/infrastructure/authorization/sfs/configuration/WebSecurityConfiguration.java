@@ -1,7 +1,7 @@
 package com.acme.learning.platform.iam.infrastructure.authorization.sfs.configuration;
 
-import com.acme.learning.platform.iam.infrastructure.hashing.bcrypt.BCryptHashingService;
 import com.acme.learning.platform.iam.infrastructure.authorization.sfs.pipeline.BearerAuthorizationRequestFilter;
+import com.acme.learning.platform.iam.infrastructure.hashing.bcrypt.BCryptHashingService;
 import com.acme.learning.platform.iam.infrastructure.tokens.jwt.BearerTokenService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
