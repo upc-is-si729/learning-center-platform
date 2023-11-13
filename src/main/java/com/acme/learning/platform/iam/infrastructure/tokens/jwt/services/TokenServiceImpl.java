@@ -1,10 +1,9 @@
 package com.acme.learning.platform.iam.infrastructure.tokens.jwt.services;
 
-import com.acme.learning.platform.iam.application.internal.outboundservices.tokens.TokenService;
 import com.acme.learning.platform.iam.infrastructure.tokens.jwt.BearerTokenService;
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.security.SignatureException;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;

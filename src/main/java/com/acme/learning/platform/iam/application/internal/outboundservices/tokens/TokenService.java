@@ -1,7 +1,5 @@
 package com.acme.learning.platform.iam.application.internal.outboundservices.tokens;
 
-import org.springframework.security.core.Authentication;
-
 /**
  * TokenService interface
  * This interface is used to generate and validate tokens
