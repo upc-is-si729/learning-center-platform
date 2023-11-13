@@ -43,8 +43,6 @@ public class BearerAuthorizationRequestFilter extends OncePerRequestFilter {
      * @param request The request object.
      * @param response The response object.
      * @param filterChain The filter chain object.
-     * @throws ServletException
-     * @throws IOException
      */
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
