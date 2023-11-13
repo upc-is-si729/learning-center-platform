@@ -17,11 +17,4 @@ public interface BearerTokenService extends TokenService {
      * @return String the JWT token
      */
     String getBearerTokenFrom(HttpServletRequest token);
-
-    /**
-     * This method is responsible for generating a JWT token from an authentication object.
-     * @param authentication the Authentication object
-     * @return String the JWT token
-     */
-    String generateToken(Authentication authentication);
 }
