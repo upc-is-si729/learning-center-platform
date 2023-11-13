@@ -2,7 +2,6 @@ package com.acme.learning.platform.iam.infrastructure.tokens.jwt;
 
 import com.acme.learning.platform.iam.application.internal.outboundservices.tokens.TokenService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.security.core.Authentication;
 
 /**
  * This interface is a marker interface for the JWT token service.
