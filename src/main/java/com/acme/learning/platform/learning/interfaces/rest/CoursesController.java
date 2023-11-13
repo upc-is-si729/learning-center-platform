@@ -39,7 +39,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  */
 @RestController
 @RequestMapping(value = "/api/v1/courses", produces = APPLICATION_JSON_VALUE)
-@Tag(name = "Courses", description = "Courses Management Endpoints")
+@Tag(name = "Courses", description = "Course Management Endpoints")
 public class CoursesController {
     private final CourseCommandService courseCommandService;
     private final CourseQueryService courseQueryService;

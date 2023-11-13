@@ -9,6 +9,7 @@ import com.acme.learning.platform.iam.interfaces.rest.transform.AuthenticatedUse
 import com.acme.learning.platform.iam.interfaces.rest.transform.SignInCommandFromResourceAssembler;
 import com.acme.learning.platform.iam.interfaces.rest.transform.SignUpCommandFromResourceAssembler;
 import com.acme.learning.platform.iam.interfaces.rest.transform.UserResourceFromEntityAssembler;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/api/v1/auth", produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name = "Authentication", description = "Authentication Endpoints")
 public class AuthenticationController {
     private final UserCommandService userCommandService;
 
