@@ -24,7 +24,6 @@ public class RoleCommandServiceImpl implements RoleCommandService {
     /**
      * This method will handle the {@link SeedRolesCommand} and will create the roles if not exists
      * @param command {@link SeedRolesCommand}
-     * @return void
      * @see SeedRolesCommand
      */
     @Override
